@@ -14,7 +14,7 @@
     "ip-stability",
     "nanobanana"
   ],
-  "systemPrompt": "你是 NanoBanana 系列海报策划专家兼角色稳定大师。根据用户输入的同一个主题和角色设定，一次生成 5 组不同风格但角色高度统一的系列海报提示词。每组必须强制保持：角色形象完全一致（发型、发色、眼睛、服装、配饰）、角色比例稳定、IP 识别元素统一，但在场景、构图、光影、艺术风格上有所变化。直接输出 5 个可用的完整 NanoBanana 提示词，编号清晰，每个提示词前必须包含完整的角色锁定关键词块。\n\n重要：海报上的文字必须使用中文（汉字），包括标题、副标题、正文等所有文字元素。确保中文字体清晰可读，使用专业中文字体（如思源黑体、站酷高端黑、造字工房字体等）。",
+  "systemPrompt": "你是 NanoBanana 系列海报策划专家兼角色稳定大师。根据用户输入的同一个主题和角色设定，一次生成 5 组不同风格但角色高度统一的系列海报提示词。每组必须强制保持：角色形象完全一致（发型、发色、眼睛、服装、配饰）、角色比例稳定、IP 识别元素统一，但在场景、构图、光影、艺术风格上有所变化。直接输出 5 个可用的完整 NanoBanana 提示词，编号清晰，每个提示词前必须包含完整的角色锁定关键词块。\n\n重要：海报上的文字必须使用中文（汉字），包括标题、副标题、正文等所有文字元素。确保中文字体清晰可读，使用专业中文字体（如思源黑体、站酷高端黑、造字工房字体等）。\n  \n文字配置功能（可选）：\n如果用户提供文字配置，请严格按照以下要求生成提示词：\n- 文字内容：使用用户指定的确切文字\n- 文字位置：按照用户要求布局（顶部居中、底部居右、左侧垂直等）\n- 文字样式：使用指定的字体风格（粗体、细体、书法体等）\n- 文字格式：控制字号大小、颜色、透明度、间距等\n- 文字效果：添加阴影、描边、发光、渐变等特效\n\n如果没有提供文字配置，则自动根据主题生成合适的中文文字。",
   "inputSchema": {
     "type": "object",
     "properties": {
@@ -49,6 +49,179 @@
         "description": "画面比例",
         "required": false,
         "default": "2:3"
+      },
+      "textConfig": {
+        "type": "object",
+        "description": "文字配置（可选），用于精确控制海报上的文字内容、位置、样式和格式",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "主标题文字内容（如：\"2026 未来科技峰会\"）"
+          },
+          "subtitle": {
+            "type": "string",
+            "description": "副标题文字内容（如：\"探索·创新·突破\"）"
+          },
+          "bodyText": {
+            "type": "string",
+            "description": "正文文字内容（如：活动时间、地点、主办方等详细信息）"
+          },
+          "position": {
+            "type": "string",
+            "description": "文字整体布局位置",
+            "enum": [
+              "顶部居中",
+              "顶部居左",
+              "顶部居右",
+              "中部居中",
+              "中部居左",
+              "中部居右",
+              "底部居中",
+              "底部居左",
+              "底部居右",
+              "左侧垂直",
+              "右侧垂直",
+              "自定义位置"
+            ]
+          },
+          "titleStyle": {
+            "type": "object",
+            "description": "主标题样式配置",
+            "properties": {
+              "fontFamily": {
+                "type": "string",
+                "description": "字体名称（如：思源黑体 Bold、站酷高端黑、书法体等）",
+                "enum": [
+                  "思源黑体 Bold",
+                  "思源黑体 Regular",
+                  "思源宋体 Bold",
+                  "思源宋体 Regular",
+                  "站酷高端黑",
+                  "站酷黄油体",
+                  "阿里巴巴普惠体 Bold",
+                  "书法体",
+                  "手写体",
+                  "艺术字体"
+                ]
+              },
+              "fontSize": {
+                "type": "string",
+                "description": "字号大小",
+                "enum": [
+                  "超大 (占画面 20-30%)",
+                  "大 (占画面 15-20%)",
+                  "中 (占画面 10-15%)",
+                  "小 (占画面 5-10%)"
+                ]
+              },
+              "fontWeight": {
+                "type": "string",
+                "description": "字体粗细",
+                "enum": [
+                  "特粗",
+                  "粗体",
+                  "常规",
+                  "细体",
+                  "特细"
+                ]
+              },
+              "color": {
+                "type": "string",
+                "description": "文字颜色（如：白色、金色渐变、霓虹蓝色等）"
+              },
+              "spacing": {
+                "type": "string",
+                "description": "字间距",
+                "enum": [
+                  "特宽",
+                  "宽",
+                  "正常",
+                  "窄",
+                  "特窄"
+                ]
+              }
+            }
+          },
+          "subtitleStyle": {
+            "type": "object",
+            "description": "副标题样式配置",
+            "properties": {
+              "fontFamily": {
+                "type": "string",
+                "description": "字体名称"
+              },
+              "fontSize": {
+                "type": "string",
+                "description": "字号大小",
+                "enum": [
+                  "大",
+                  "中",
+                  "小",
+                  "微小"
+                ]
+              },
+              "fontWeight": {
+                "type": "string",
+                "description": "字体粗细",
+                "enum": [
+                  "粗体",
+                  "常规",
+                  "细体"
+                ]
+              },
+              "color": {
+                "type": "string",
+                "description": "文字颜色"
+              }
+            }
+          },
+          "effects": {
+            "type": "object",
+            "description": "文字特效配置",
+            "properties": {
+              "shadow": {
+                "type": "string",
+                "description": "阴影效果",
+                "enum": [
+                  "无",
+                  "轻微阴影",
+                  "明显阴影",
+                  "发光阴影"
+                ]
+              },
+              "stroke": {
+                "type": "string",
+                "description": "描边效果",
+                "enum": [
+                  "无",
+                  "细描边",
+                  "中描边",
+                  "粗描边"
+                ]
+              },
+              "glow": {
+                "type": "string",
+                "description": "发光效果",
+                "enum": [
+                  "无",
+                  "微弱发光",
+                  "明显发光",
+                  "强烈发光"
+                ]
+              },
+              "gradient": {
+                "type": "string",
+                "description": "渐变效果",
+                "enum": [
+                  "无",
+                  "线性渐变",
+                  "径向渐变",
+                  "角度渐变"
+                ]
+              }
+            }
+          }
+        }
       }
     }
   },
@@ -82,7 +255,32 @@
         "colorBase": "白 + 银 + 科技蓝",
         "ipElements": "全息眼镜、发光平板、科技风连衣裙",
         "quantity": 5,
-        "aspectRatio": "2:3"
+        "aspectRatio": "2:3",
+        "textConfig": {
+          "title": "2026 未来科技峰会",
+          "subtitle": "探索·创新·突破",
+          "bodyText": "2026 年 3 月 15-17 日 | 北京·国家会议中心",
+          "position": "顶部居中",
+          "titleStyle": {
+            "fontFamily": "思源黑体 Bold",
+            "fontSize": "超大 (占画面 20-30%)",
+            "fontWeight": "粗体",
+            "color": "白色渐变到霓虹蓝",
+            "spacing": "宽"
+          },
+          "subtitleStyle": {
+            "fontFamily": "思源黑体 Regular",
+            "fontSize": "中",
+            "fontWeight": "常规",
+            "color": "浅灰色"
+          },
+          "effects": {
+            "shadow": "轻微阴影",
+            "stroke": "无",
+            "glow": "微弱发光",
+            "gradient": "线性渐变"
+          }
+        }
       },
       "output": "【角色一致性锁定关键词】（每组必含）\nSilver short bob haircut, blue clear eyes, wearing white minimalist tech dress, transparent holographic glasses, holding glowing tablet device, 170cm height, slim body type, professional tech blogger形象，character identity lock, consistent facial features, stable character design, consistent body proportions, unchanged costume design, consistent expression style, fixed character color palette, IP stable, character consistency lock\n\n【系列海报 1/5 - 日常科技场景】\nSilver short bob haircut, blue clear eyes, wearing white minimalist tech dress, transparent holographic glasses, holding glowing tablet device, 170cm height, slim body type, professional tech blogger 形象，character identity lock, consistent facial features, stable character design, consistent body proportions, unchanged costume design, consistent expression style, fixed character color palette, IP stable, character consistency lock, casual pose sitting on modern sofa, reviewing tech products on tablet, bright minimalist apartment background, natural daylight from large windows, white silver tech blue color scheme, clean interior design, lifestyle photography aesthetic, professional tech blogger visual --ar 2:3 --nb-v1\n\n【系列海报 2/5 - 赛博朋克风格】\nSilver short bob haircut, blue clear eyes, wearing white minimalist tech dress, transparent holographic glasses, holding glowing tablet device, 170cm height, slim body type, professional tech blogger 形象，character identity lock, consistent facial features, stable character design, consistent body proportions, unchanged costume design, consistent expression style, fixed character color palette, IP stable, character consistency lock, standing on futuristic rooftop at night, neon city skyline background, holographic UI screens floating around, volumetric fog, laser beams, cyberpunk atmosphere, neon blue and purple lighting, dynamic pose, urban tech visual --ar 2:3 --nb-v1\n\n【系列海报 3/5 - 发布会舞台风格】\nSilver short bob haircut, blue clear eyes, wearing white minimalist tech dress, transparent holographic glasses, holding glowing tablet device, 170cm height, slim body type, professional tech blogger 形象，character identity lock, consistent facial features, stable character design, consistent body proportions, unchanged costume design, consistent expression style, fixed character color palette, IP stable, character consistency lock, presenting on conference stage, spotlight from above, large screen background displaying product specs, audience silhouettes in foreground, professional stage lighting, confident hero pose, tech event atmosphere, corporate visual --ar 2:3 --nb-v1\n\n【系列海报 4/5 - 极简工作室风格】\nSilver short bob haircut, blue clear eyes, wearing white minimalist tech dress, transparent holographic glasses, holding glowing tablet device, 170cm height, slim body type, professional tech blogger 形象，character identity lock, consistent facial features, stable character design, consistent body proportions, unchanged costume design, consistent expression style, fixed character color palette, IP stable, character consistency lock, standing in minimalist white studio, clean geometric shadows, single plant as accent, soft diffused lighting, rule of thirds composition, lots of negative space, high-key photography, editorial magazine style, sophisticated aesthetic --ar 2:3 --nb-v1\n\n【系列海报 5/5 - 未来实验室风格】\nSilver short bob haircut, blue clear eyes, wearing white minimalist tech dress, transparent holographic glasses, holding glowing tablet device, 170cm height, slim body type, professional tech blogger 形象，character identity lock, consistent facial features, stable character design, consistent body proportions, unchanged costume design, consistent expression style, fixed character color palette, IP stable, character consistency lock, working in futuristic laboratory, holographic displays and floating data visualizations, cool blue ambient lighting, scientific equipment in background, analytical pose interacting with interfaces, sci-fi research atmosphere, high-tech visual --ar 2:3 --nb-v1\n\n【IP 统一性说明】所有 5 组海报强制保持：银色短发波波头、蓝色眼眸、白色科技风连衣裙、全息眼镜、发光平板设备、170cm 苗条体型、专业科技博主形象。通过角色锁定关键词确保 NanoBanana 生成时角色不崩坏、IP 高度统一。5 组分别展示不同场景和风格，适合品牌全渠道宣传、社交媒体矩阵、多场景投放。"
     }

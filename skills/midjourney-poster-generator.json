@@ -14,7 +14,7 @@
     "curator",
     "art-direction"
   ],
-  "systemPrompt": "你是专业艺术策展设计师，精通海报设计、艺术展览、活动主 KV、系列海报、版式构图、色彩美学、视觉层级、留白呼吸感、高级感设计。根据用户输入的主题、风格、氛围，生成英文提示词并提供中文解析。\n\n重要要求：海报上的所有文字必须使用中文（汉字），包括标题、副标题、正文、装饰文字等。使用专业中文字体（如思源黑体、站酷高端黑、造字工房字体等），确保中文排版美观可读。\n\n输出格式：\n【英文提示词】完整的英文提示词，可直接用于 Midjourney\n【中文翻译】英文提示词的中文翻译\n【提示词解析】按组成部分详细解释每个关键词的作用\n\n英文提示词必须包含：subject, art style, composition, lighting, color scheme, texture, typography, resolution, mood",
+  "systemPrompt": "你是专业艺术策展设计师，精通海报设计、艺术展览、活动主 KV、系列海报、版式构图、色彩美学、视觉层级、留白呼吸感、高级感设计。根据用户输入的主题、风格、氛围，生成英文提示词并提供中文解析。\n\n重要要求：海报上的所有文字必须使用中文（汉字），包括标题、副标题、正文、装饰文字等。使用专业中文字体（如思源黑体、站酷高端黑、造字工房字体等），确保中文排版美观可读。\n\n\n  \n文字配置功能（可选）：\n如果用户提供文字配置，请严格按照以下要求生成提示词：\n- 文字内容：使用用户指定的确切文字\n- 文字位置：按照用户要求布局（顶部居中、底部居右、左侧垂直等）\n- 文字样式：使用指定的字体风格（粗体、细体、书法体等）\n- 文字格式：控制字号大小、颜色、透明度、间距等\n- 文字效果：添加阴影、描边、发光、渐变等特效\n\n如果没有提供文字配置，则自动根据主题生成合适的中文文字。\n\n输出格式：\n【英文提示词】完整的英文提示词，可直接用于 Midjourney\n【中文翻译】英文提示词的中文翻译\n【提示词解析】按组成部分详细解释每个关键词的作用\n\n英文提示词必须包含：subject, art style, composition, lighting, color scheme, texture, typography, resolution, mood",
   "inputSchema": {
     "type": "object",
     "properties": {
@@ -43,6 +43,179 @@
         "description": "画面比例（如：2:3, 3:4, 16:9, 1:1 等）",
         "required": false,
         "default": "2:3"
+      },
+      "textConfig": {
+        "type": "object",
+        "description": "文字配置（可选），用于精确控制海报上的文字内容、位置、样式和格式",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "主标题文字内容（如：\"2026 未来科技峰会\"）"
+          },
+          "subtitle": {
+            "type": "string",
+            "description": "副标题文字内容（如：\"探索·创新·突破\"）"
+          },
+          "bodyText": {
+            "type": "string",
+            "description": "正文文字内容（如：活动时间、地点、主办方等详细信息）"
+          },
+          "position": {
+            "type": "string",
+            "description": "文字整体布局位置",
+            "enum": [
+              "顶部居中",
+              "顶部居左",
+              "顶部居右",
+              "中部居中",
+              "中部居左",
+              "中部居右",
+              "底部居中",
+              "底部居左",
+              "底部居右",
+              "左侧垂直",
+              "右侧垂直",
+              "自定义位置"
+            ]
+          },
+          "titleStyle": {
+            "type": "object",
+            "description": "主标题样式配置",
+            "properties": {
+              "fontFamily": {
+                "type": "string",
+                "description": "字体名称（如：思源黑体 Bold、站酷高端黑、书法体等）",
+                "enum": [
+                  "思源黑体 Bold",
+                  "思源黑体 Regular",
+                  "思源宋体 Bold",
+                  "思源宋体 Regular",
+                  "站酷高端黑",
+                  "站酷黄油体",
+                  "阿里巴巴普惠体 Bold",
+                  "书法体",
+                  "手写体",
+                  "艺术字体"
+                ]
+              },
+              "fontSize": {
+                "type": "string",
+                "description": "字号大小",
+                "enum": [
+                  "超大 (占画面 20-30%)",
+                  "大 (占画面 15-20%)",
+                  "中 (占画面 10-15%)",
+                  "小 (占画面 5-10%)"
+                ]
+              },
+              "fontWeight": {
+                "type": "string",
+                "description": "字体粗细",
+                "enum": [
+                  "特粗",
+                  "粗体",
+                  "常规",
+                  "细体",
+                  "特细"
+                ]
+              },
+              "color": {
+                "type": "string",
+                "description": "文字颜色（如：白色、金色渐变、霓虹蓝色等）"
+              },
+              "spacing": {
+                "type": "string",
+                "description": "字间距",
+                "enum": [
+                  "特宽",
+                  "宽",
+                  "正常",
+                  "窄",
+                  "特窄"
+                ]
+              }
+            }
+          },
+          "subtitleStyle": {
+            "type": "object",
+            "description": "副标题样式配置",
+            "properties": {
+              "fontFamily": {
+                "type": "string",
+                "description": "字体名称"
+              },
+              "fontSize": {
+                "type": "string",
+                "description": "字号大小",
+                "enum": [
+                  "大",
+                  "中",
+                  "小",
+                  "微小"
+                ]
+              },
+              "fontWeight": {
+                "type": "string",
+                "description": "字体粗细",
+                "enum": [
+                  "粗体",
+                  "常规",
+                  "细体"
+                ]
+              },
+              "color": {
+                "type": "string",
+                "description": "文字颜色"
+              }
+            }
+          },
+          "effects": {
+            "type": "object",
+            "description": "文字特效配置",
+            "properties": {
+              "shadow": {
+                "type": "string",
+                "description": "阴影效果",
+                "enum": [
+                  "无",
+                  "轻微阴影",
+                  "明显阴影",
+                  "发光阴影"
+                ]
+              },
+              "stroke": {
+                "type": "string",
+                "description": "描边效果",
+                "enum": [
+                  "无",
+                  "细描边",
+                  "中描边",
+                  "粗描边"
+                ]
+              },
+              "glow": {
+                "type": "string",
+                "description": "发光效果",
+                "enum": [
+                  "无",
+                  "微弱发光",
+                  "明显发光",
+                  "强烈发光"
+                ]
+              },
+              "gradient": {
+                "type": "string",
+                "description": "渐变效果",
+                "enum": [
+                  "无",
+                  "线性渐变",
+                  "径向渐变",
+                  "角度渐变"
+                ]
+              }
+            }
+          }
+        }
       }
     }
   },
@@ -54,9 +227,34 @@
         "style": "赛博朋克",
         "mood": "神秘震撼",
         "colorScheme": "霓虹蓝紫撞色",
-        "aspectRatio": "2:3"
+        "aspectRatio": "2:3",
+        "textConfig": {
+          "title": "2026 未来科技峰会",
+          "subtitle": "探索·创新·突破",
+          "bodyText": "2026 年 3 月 15-17 日 | 北京·国家会议中心",
+          "position": "顶部居中",
+          "titleStyle": {
+            "fontFamily": "思源黑体 Bold",
+            "fontSize": "超大 (占画面 20-30%)",
+            "fontWeight": "粗体",
+            "color": "白色渐变到霓虹蓝",
+            "spacing": "宽"
+          },
+          "subtitleStyle": {
+            "fontFamily": "思源黑体 Regular",
+            "fontSize": "中",
+            "fontWeight": "常规",
+            "color": "浅灰色"
+          },
+          "effects": {
+            "shadow": "轻微阴影",
+            "stroke": "无",
+            "glow": "微弱发光",
+            "gradient": "线性渐变"
+          }
+        }
       },
-      "output": "【英文提示词】\nFuturistic tech summit poster, cyberpunk style, center radial composition, glowing tech sphere floating above digital matrix, volumetric light beams, neon blue and purple color scheme, metallic texture with holographic projection, bold sans-serif typography at visual focal point, 8K ultra HD resolution, mysterious and awe-inspiring futuristic atmosphere, professional poster design, art direction masterpiece --ar 2:3 --v 6.0 --style raw\n\n【中文翻译】\n未来科技峰会海报，赛博朋克风格，中心放射构图，发光的科技球体悬浮在数字矩阵之上，体积光束，霓虹蓝紫配色，金属质感与全息投影，视觉焦点处的粗体无衬线字体，8K 超高清分辨率，神秘震撼的未来氛围，专业海报设计，艺术指导杰作\n\n【中文文字要求】海报上的所有文字使用中文（汉字），包括标题、副标题、正文等，使用专业中文字体（如思源黑体、站酷高端黑等）\n\n【提示词解析】\n• Futuristic tech summit poster - 主体描述：明确海报类型和主题\n• cyberpunk style - 艺术风格：确定视觉风格基调\n• center radial composition - 构图方式：中心放射式构图\n• glowing tech sphere floating above digital matrix - 核心视觉元素：发光球体 + 数字矩阵\n• volumetric light beams - 光影效果：体积光增强氛围\n• neon blue and purple color scheme - 色彩方案：霓虹蓝紫撞色\n• metallic texture with holographic projection - 材质质感：金属 + 全息投影\n• bold sans-serif typography at visual focal point - 排版层级：粗体无衬线字体置于视觉焦点\n• 8K ultra HD resolution - 技术参数：分辨率要求\n• mysterious and awe-inspiring futuristic atmosphere - 氛围情绪：神秘震撼的未来感\n• --ar 2:3 --v 6.0 --style raw - Midjourney 参数：画面比例、版本、风格模式"
+      "output": "【英文提示词】\nFuturistic tech summit poster, cyberpunk style, center radial composition, glowing tech sphere floating above digital matrix, volumetric light beams, neon blue and purple color scheme, metallic texture with holographic projection, bold sans-serif typography at visual focal point, 8K ultra HD resolution, mysterious and awe-inspiring futuristic atmosphere, professional poster design, art direction masterpiece --ar 2:3 --v 6.0 --style raw\n\n【中文翻译】\n未来科技峰会海报，赛博朋克风格，中心放射构图，发光的科技球体悬浮在数字矩阵之上，体积光束，霓虹蓝紫配色，金属质感与全息投影，视觉焦点处的粗体无衬线字体，8K 超高清分辨率，神秘震撼的未来氛围，专业海报设计，艺术指导杰作\n\n【文字配置说明】\n• 主标题：\"2026 未来科技峰会\" - 思源黑体 Bold，超大字号，顶部居中，白色渐变到霓虹蓝\n• 副标题：\"探索·创新·突破\" - 思源黑体 Regular，中号字号，主标题下方，浅灰色\n• 正文：\"2026 年 3 月 15-17 日 | 北京·国家会议中心\" - 底部居中，小号字号\n• 文字效果：轻微阴影 + 微弱发光 + 线性渐变，增强科技感和可读性\n\n【中文文字要求】海报上的所有文字使用中文（汉字），包括标题、副标题、正文等，使用专业中文字体（如思源黑体、站酷高端黑等）\n\n【提示词解析】\n• Futuristic tech summit poster - 主体描述：明确海报类型和主题\n• cyberpunk style - 艺术风格：确定视觉风格基调\n• center radial composition - 构图方式：中心放射式构图\n• glowing tech sphere floating above digital matrix - 核心视觉元素：发光球体 + 数字矩阵\n• volumetric light beams - 光影效果：体积光增强氛围\n• neon blue and purple color scheme - 色彩方案：霓虹蓝紫撞色\n• metallic texture with holographic projection - 材质质感：金属 + 全息投影\n• bold sans-serif typography at visual focal point - 排版层级：粗体无衬线字体置于视觉焦点\n• 8K ultra HD resolution - 技术参数：分辨率要求\n• mysterious and awe-inspiring futuristic atmosphere - 氛围情绪：神秘震撼的未来感\n• --ar 2:3 --v 6.0 --style raw - Midjourney 参数：画面比例、版本、风格模式"
     }
   ],
   "parameters": {

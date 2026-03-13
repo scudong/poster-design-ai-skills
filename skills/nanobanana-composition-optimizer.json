@@ -14,7 +14,7 @@
     "nanobanana",
     "consistency"
   ],
-  "systemPrompt": "你是 NanoBanana 角色场景整合专家，精通角色构图、姿态设计、场景融合、色彩理论。为海报提供专业级优化建议，特别强化：角色姿态与场景的协调性、角色在画面中的位置稳定性、多角度拍摄的一致性、色彩与角色设计的匹配度。输出可直接用于 NanoBanana 生成的描述词，确保角色在不同构图中保持一致性，不崩坏、不变形。\n\n重要：海报上的文字必须使用中文（汉字），包括标题、副标题、正文等所有文字元素。确保中文字体清晰可读，使用专业中文字体（如思源黑体、站酷高端黑、造字工房字体等）。",
+  "systemPrompt": "你是 NanoBanana 角色场景整合专家，精通角色构图、姿态设计、场景融合、色彩理论。为海报提供专业级优化建议，特别强化：角色姿态与场景的协调性、角色在画面中的位置稳定性、多角度拍摄的一致性、色彩与角色设计的匹配度。输出可直接用于 NanoBanana 生成的描述词，确保角色在不同构图中保持一致性，不崩坏、不变形。\n\n重要：海报上的文字必须使用中文（汉字），包括标题、副标题、正文等所有文字元素。确保中文字体清晰可读，使用专业中文字体（如思源黑体、站酷高端黑、造字工房字体等）。\n  \n文字配置功能（可选）：\n如果用户提供文字配置，请严格按照以下要求生成提示词：\n- 文字内容：使用用户指定的确切文字\n- 文字位置：按照用户要求布局（顶部居中、底部居右、左侧垂直等）\n- 文字样式：使用指定的字体风格（粗体、细体、书法体等）\n- 文字格式：控制字号大小、颜色、透明度、间距等\n- 文字效果：添加阴影、描边、发光、渐变等特效\n\n如果没有提供文字配置，则自动根据主题生成合适的中文文字。",
   "inputSchema": {
     "type": "object",
     "properties": {
@@ -39,6 +39,179 @@
         "description": "输出格式（横版、竖版、方形）",
         "required": false,
         "default": "竖版"
+      },
+      "textConfig": {
+        "type": "object",
+        "description": "文字配置（可选），用于精确控制海报上的文字内容、位置、样式和格式",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "主标题文字内容（如：\"2026 未来科技峰会\"）"
+          },
+          "subtitle": {
+            "type": "string",
+            "description": "副标题文字内容（如：\"探索·创新·突破\"）"
+          },
+          "bodyText": {
+            "type": "string",
+            "description": "正文文字内容（如：活动时间、地点、主办方等详细信息）"
+          },
+          "position": {
+            "type": "string",
+            "description": "文字整体布局位置",
+            "enum": [
+              "顶部居中",
+              "顶部居左",
+              "顶部居右",
+              "中部居中",
+              "中部居左",
+              "中部居右",
+              "底部居中",
+              "底部居左",
+              "底部居右",
+              "左侧垂直",
+              "右侧垂直",
+              "自定义位置"
+            ]
+          },
+          "titleStyle": {
+            "type": "object",
+            "description": "主标题样式配置",
+            "properties": {
+              "fontFamily": {
+                "type": "string",
+                "description": "字体名称（如：思源黑体 Bold、站酷高端黑、书法体等）",
+                "enum": [
+                  "思源黑体 Bold",
+                  "思源黑体 Regular",
+                  "思源宋体 Bold",
+                  "思源宋体 Regular",
+                  "站酷高端黑",
+                  "站酷黄油体",
+                  "阿里巴巴普惠体 Bold",
+                  "书法体",
+                  "手写体",
+                  "艺术字体"
+                ]
+              },
+              "fontSize": {
+                "type": "string",
+                "description": "字号大小",
+                "enum": [
+                  "超大 (占画面 20-30%)",
+                  "大 (占画面 15-20%)",
+                  "中 (占画面 10-15%)",
+                  "小 (占画面 5-10%)"
+                ]
+              },
+              "fontWeight": {
+                "type": "string",
+                "description": "字体粗细",
+                "enum": [
+                  "特粗",
+                  "粗体",
+                  "常规",
+                  "细体",
+                  "特细"
+                ]
+              },
+              "color": {
+                "type": "string",
+                "description": "文字颜色（如：白色、金色渐变、霓虹蓝色等）"
+              },
+              "spacing": {
+                "type": "string",
+                "description": "字间距",
+                "enum": [
+                  "特宽",
+                  "宽",
+                  "正常",
+                  "窄",
+                  "特窄"
+                ]
+              }
+            }
+          },
+          "subtitleStyle": {
+            "type": "object",
+            "description": "副标题样式配置",
+            "properties": {
+              "fontFamily": {
+                "type": "string",
+                "description": "字体名称"
+              },
+              "fontSize": {
+                "type": "string",
+                "description": "字号大小",
+                "enum": [
+                  "大",
+                  "中",
+                  "小",
+                  "微小"
+                ]
+              },
+              "fontWeight": {
+                "type": "string",
+                "description": "字体粗细",
+                "enum": [
+                  "粗体",
+                  "常规",
+                  "细体"
+                ]
+              },
+              "color": {
+                "type": "string",
+                "description": "文字颜色"
+              }
+            }
+          },
+          "effects": {
+            "type": "object",
+            "description": "文字特效配置",
+            "properties": {
+              "shadow": {
+                "type": "string",
+                "description": "阴影效果",
+                "enum": [
+                  "无",
+                  "轻微阴影",
+                  "明显阴影",
+                  "发光阴影"
+                ]
+              },
+              "stroke": {
+                "type": "string",
+                "description": "描边效果",
+                "enum": [
+                  "无",
+                  "细描边",
+                  "中描边",
+                  "粗描边"
+                ]
+              },
+              "glow": {
+                "type": "string",
+                "description": "发光效果",
+                "enum": [
+                  "无",
+                  "微弱发光",
+                  "明显发光",
+                  "强烈发光"
+                ]
+              },
+              "gradient": {
+                "type": "string",
+                "description": "渐变效果",
+                "enum": [
+                  "无",
+                  "线性渐变",
+                  "径向渐变",
+                  "角度渐变"
+                ]
+              }
+            }
+          }
+        }
       }
     }
   },
@@ -69,7 +242,32 @@
         "content": "魔法少女角色站在城市天台上，夜晚场景",
         "characterDescription": "粉色双马尾长发，紫色大眼睛，穿着蓝白魔法少女制服，手持星星魔杖，身高 160cm，萝莉体型",
         "focusArea": "整体",
-        "format": "竖版"
+        "format": "竖版",
+        "textConfig": {
+          "title": "2026 未来科技峰会",
+          "subtitle": "探索·创新·突破",
+          "bodyText": "2026 年 3 月 15-17 日 | 北京·国家会议中心",
+          "position": "顶部居中",
+          "titleStyle": {
+            "fontFamily": "思源黑体 Bold",
+            "fontSize": "超大 (占画面 20-30%)",
+            "fontWeight": "粗体",
+            "color": "白色渐变到霓虹蓝",
+            "spacing": "宽"
+          },
+          "subtitleStyle": {
+            "fontFamily": "思源黑体 Regular",
+            "fontSize": "中",
+            "fontWeight": "常规",
+            "color": "浅灰色"
+          },
+          "effects": {
+            "shadow": "轻微阴影",
+            "stroke": "无",
+            "glow": "微弱发光",
+            "gradient": "线性渐变"
+          }
+        }
       },
       "output": "【构图方案】三分法构图，角色位于右侧黄金分割点，城市天际线作为背景层次\n【角色姿态】动态姿态 - 魔法少女单脚站立于天台边缘，一手高举魔杖，一手轻按裙摆，披风飘扬，富有动感\n【场景融合】角色与城市夜景融合，魔杖光芒照亮周围，城市灯光作为背景散景，营造魔法与现实交织的氛围\n【视觉焦点】魔杖顶端的魔法光芒作为第一视觉焦点，角色面部作为第二焦点，形成视觉引导\n【色彩搭配】主色：夜空深蓝 (#0B1026)，辅色：城市暖黄灯光，点缀色：魔法粉紫 (#FF69B4) 和星星金 (#FFD700)，角色制服蓝白保持高饱和度突出\n【角色一致性锁定】pink twin-tail long hair, purple big eyes, blue-white magical girl uniform, star-topped magic wand, 160cm height, loli body type, consistent facial features, stable character design, fixed costume details, unchanged accessory placement, character identity lock\n【优化后完整提示词】Magical girl character standing on city rooftop at night, pink twin-tail long hair, purple big eyes, wearing blue-white magical girl uniform, holding star-topped magic wand, 160cm height loli body type, dynamic pose with one leg on rooftop edge, one hand raising wand high, other hand holding skirt, cape flowing in wind, rule of thirds composition, character at right golden ratio point, city skyline background layers, magical glow from wand illuminating surroundings, city lights as bokeh background, deep night blue #0B1026 main color, warm yellow city lights, magical pink-purple #FF69B4 and star gold #FFD700 accent colors, volumetric lighting, particle effects, sparkles, urban fantasy atmosphere, consistent facial features, stable character design, fixed costume details, character identity lock, IP stable, professional anime poster, 8K resolution --ar 2:3 --nb-v1"
     }

@@ -14,7 +14,7 @@
     "typography",
     "visual-hierarchy"
   ],
-  "systemPrompt": "你是高级版式设计师，精通构图原理、色彩理论、视觉层级、排版设计。为海报提供专业级优化建议，并生成英文提示词和中文解析。\n\n重要要求：海报上的所有文字必须使用中文（汉字），包括标题、副标题、正文、装饰文字等。使用专业中文字体（如思源黑体、站酷高端黑、造字工房字体等），确保中文排版美观可读。\n\n输出格式：\n【构图方案】中文说明\n【视觉焦点】中文说明\n【色彩搭配】中文说明（含色值）\n【排版层级】中文说明\n【留白比例】中文说明\n【情绪氛围】中文说明\n【优化后英文提示词】完整的英文提示词，可直接用于 Midjourney\n【中文翻译】英文提示词的翻译\n【提示词解析】按组成部分解释每个关键词的作用",
+  "systemPrompt": "你是高级版式设计师，精通构图原理、色彩理论、视觉层级、排版设计。为海报提供专业级优化建议，并生成英文提示词和中文解析。\n\n重要要求：海报上的所有文字必须使用中文（汉字），包括标题、副标题、正文、装饰文字等。使用专业中文字体（如思源黑体、站酷高端黑、造字工房字体等），确保中文排版美观可读。\n\n\n  \n文字配置功能（可选）：\n如果用户提供文字配置，请严格按照以下要求生成提示词：\n- 文字内容：使用用户指定的确切文字\n- 文字位置：按照用户要求布局（顶部居中、底部居右、左侧垂直等）\n- 文字样式：使用指定的字体风格（粗体、细体、书法体等）\n- 文字格式：控制字号大小、颜色、透明度、间距等\n- 文字效果：添加阴影、描边、发光、渐变等特效\n\n如果没有提供文字配置，则自动根据主题生成合适的中文文字。\n\n输出格式：\n【构图方案】中文说明\n【视觉焦点】中文说明\n【色彩搭配】中文说明（含色值）\n【排版层级】中文说明\n【留白比例】中文说明\n【情绪氛围】中文说明\n【优化后英文提示词】完整的英文提示词，可直接用于 Midjourney\n【中文翻译】英文提示词的翻译\n【提示词解析】按组成部分解释每个关键词的作用",
   "inputSchema": {
     "type": "object",
     "properties": {
@@ -34,6 +34,179 @@
         "description": "输出格式（如：横版、竖版、方形）",
         "required": false,
         "default": "竖版"
+      },
+      "textConfig": {
+        "type": "object",
+        "description": "文字配置（可选），用于精确控制海报上的文字内容、位置、样式和格式",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "主标题文字内容（如：\"2026 未来科技峰会\"）"
+          },
+          "subtitle": {
+            "type": "string",
+            "description": "副标题文字内容（如：\"探索·创新·突破\"）"
+          },
+          "bodyText": {
+            "type": "string",
+            "description": "正文文字内容（如：活动时间、地点、主办方等详细信息）"
+          },
+          "position": {
+            "type": "string",
+            "description": "文字整体布局位置",
+            "enum": [
+              "顶部居中",
+              "顶部居左",
+              "顶部居右",
+              "中部居中",
+              "中部居左",
+              "中部居右",
+              "底部居中",
+              "底部居左",
+              "底部居右",
+              "左侧垂直",
+              "右侧垂直",
+              "自定义位置"
+            ]
+          },
+          "titleStyle": {
+            "type": "object",
+            "description": "主标题样式配置",
+            "properties": {
+              "fontFamily": {
+                "type": "string",
+                "description": "字体名称（如：思源黑体 Bold、站酷高端黑、书法体等）",
+                "enum": [
+                  "思源黑体 Bold",
+                  "思源黑体 Regular",
+                  "思源宋体 Bold",
+                  "思源宋体 Regular",
+                  "站酷高端黑",
+                  "站酷黄油体",
+                  "阿里巴巴普惠体 Bold",
+                  "书法体",
+                  "手写体",
+                  "艺术字体"
+                ]
+              },
+              "fontSize": {
+                "type": "string",
+                "description": "字号大小",
+                "enum": [
+                  "超大 (占画面 20-30%)",
+                  "大 (占画面 15-20%)",
+                  "中 (占画面 10-15%)",
+                  "小 (占画面 5-10%)"
+                ]
+              },
+              "fontWeight": {
+                "type": "string",
+                "description": "字体粗细",
+                "enum": [
+                  "特粗",
+                  "粗体",
+                  "常规",
+                  "细体",
+                  "特细"
+                ]
+              },
+              "color": {
+                "type": "string",
+                "description": "文字颜色（如：白色、金色渐变、霓虹蓝色等）"
+              },
+              "spacing": {
+                "type": "string",
+                "description": "字间距",
+                "enum": [
+                  "特宽",
+                  "宽",
+                  "正常",
+                  "窄",
+                  "特窄"
+                ]
+              }
+            }
+          },
+          "subtitleStyle": {
+            "type": "object",
+            "description": "副标题样式配置",
+            "properties": {
+              "fontFamily": {
+                "type": "string",
+                "description": "字体名称"
+              },
+              "fontSize": {
+                "type": "string",
+                "description": "字号大小",
+                "enum": [
+                  "大",
+                  "中",
+                  "小",
+                  "微小"
+                ]
+              },
+              "fontWeight": {
+                "type": "string",
+                "description": "字体粗细",
+                "enum": [
+                  "粗体",
+                  "常规",
+                  "细体"
+                ]
+              },
+              "color": {
+                "type": "string",
+                "description": "文字颜色"
+              }
+            }
+          },
+          "effects": {
+            "type": "object",
+            "description": "文字特效配置",
+            "properties": {
+              "shadow": {
+                "type": "string",
+                "description": "阴影效果",
+                "enum": [
+                  "无",
+                  "轻微阴影",
+                  "明显阴影",
+                  "发光阴影"
+                ]
+              },
+              "stroke": {
+                "type": "string",
+                "description": "描边效果",
+                "enum": [
+                  "无",
+                  "细描边",
+                  "中描边",
+                  "粗描边"
+                ]
+              },
+              "glow": {
+                "type": "string",
+                "description": "发光效果",
+                "enum": [
+                  "无",
+                  "微弱发光",
+                  "明显发光",
+                  "强烈发光"
+                ]
+              },
+              "gradient": {
+                "type": "string",
+                "description": "渐变效果",
+                "enum": [
+                  "无",
+                  "线性渐变",
+                  "径向渐变",
+                  "角度渐变"
+                ]
+              }
+            }
+          }
+        }
       }
     }
   },
@@ -60,9 +233,34 @@
       "input": {
         "content": "科技产品发布会海报，蓝色背景，中间放产品",
         "focusArea": "整体",
-        "format": "竖版"
+        "format": "竖版",
+        "textConfig": {
+          "title": "2026 未来科技峰会",
+          "subtitle": "探索·创新·突破",
+          "bodyText": "2026 年 3 月 15-17 日 | 北京·国家会议中心",
+          "position": "顶部居中",
+          "titleStyle": {
+            "fontFamily": "思源黑体 Bold",
+            "fontSize": "超大 (占画面 20-30%)",
+            "fontWeight": "粗体",
+            "color": "白色渐变到霓虹蓝",
+            "spacing": "宽"
+          },
+          "subtitleStyle": {
+            "fontFamily": "思源黑体 Regular",
+            "fontSize": "中",
+            "fontWeight": "常规",
+            "color": "浅灰色"
+          },
+          "effects": {
+            "shadow": "轻微阴影",
+            "stroke": "无",
+            "glow": "微弱发光",
+            "gradient": "线性渐变"
+          }
+        }
       },
-      "output": "【构图方案】\n中心放射式构图 + 三分法结合，产品位于视觉中心偏上黄金分割点\n\n【视觉焦点】\n产品主体占据画面 40% 面积，顶部留白用于标题，底部 1/3 区域放置辅助信息\n\n【色彩搭配】\n主色：深空蓝 (#0A1628)\n辅色：科技蓝 (#1E3A5F)\n点缀色：霓虹青 (#00F0FF) 用于高光和信息强调\n\n【排版层级】\n主标题：无衬线粗体 72pt 置于顶部 1/3 区域\n副标题：中等字重 36pt 置于主标题下方\n正文信息：细体 18pt 置于底部\n\n【留白比例】\n顶部留白 25%，两侧各留白 15%，底部留白 20%，确保呼吸感\n\n【情绪氛围】\n专业、高端、未来感、可信赖\n\n【优化后英文提示词】\nTech product launch poster, center radial composition with rule of thirds, premium smartphone product floating at golden ratio point, deep space blue background #0A1628, neon cyan accent lighting #00F0FF, volumetric light beams radiating from product, minimalist sans-serif typography hierarchy, 25% top white space for headline, professional corporate aesthetic, high-end tech visual, 8K resolution, studio lighting, product photography masterpiece --ar 2:3 --v 6.0 --style raw\n\n【中文翻译】\n科技产品发布会海报，中心放射构图结合三分法，高端智能手机产品悬浮于黄金分割点，深空蓝背景，霓虹青点缀光，从产品放射出的体积光束，极简无衬线字体层级，顶部 25% 留白用于标题，专业企业美学，高端科技视觉，8K 分辨率，影棚灯光，产品摄影杰作\n\n【中文文字要求】海报上的所有文字使用中文（汉字），包括标题、副标题、正文等，使用专业中文字体（如思源黑体、站酷高端黑等）\n\n【提示词解析】\n• Tech product launch poster - 主体描述：明确海报类型\n• center radial composition with rule of thirds - 构图方式：中心放射 + 三分法\n• premium smartphone product floating at golden ratio point - 视觉焦点：产品位于黄金分割点\n• deep space blue background #0A1628 - 色彩方案：深空蓝背景（精确色值）\n• neon cyan accent lighting #00F0FF - 点缀色：霓虹青强调光\n• volumetric light beams radiating from product - 光影效果：体积光放射\n• minimalist sans-serif typography hierarchy - 排版层级：极简字体系统\n• 25% top white space for headline - 留白比例：顶部 25% 留白\n• professional corporate aesthetic - 情绪氛围：专业企业美学\n• 8K resolution, studio lighting - 技术参数：分辨率和灯光\n• --ar 2:3 --v 6.0 --style raw - Midjourney 参数"
+      "output": "【构图方案】\n中心放射式构图 + 三分法结合，产品位于视觉中心偏上黄金分割点\n\n【视觉焦点】\n产品主体占据画面 40% 面积，顶部留白用于标题，底部 1/3 区域放置辅助信息\n\n【色彩搭配】\n主色：深空蓝 (#0A1628)\n辅色：科技蓝 (#1E3A5F)\n点缀色：霓虹青 (#00F0FF) 用于高光和信息强调\n\n【排版层级】\n主标题：无衬线粗体 72pt 置于顶部 1/3 区域\n副标题：中等字重 36pt 置于主标题下方\n正文信息：细体 18pt 置于底部\n\n【留白比例】\n顶部留白 25%，两侧各留白 15%，底部留白 20%，确保呼吸感\n\n【情绪氛围】\n专业、高端、未来感、可信赖\n\n【优化后英文提示词】\nTech product launch poster, center radial composition with rule of thirds, premium smartphone product floating at golden ratio point, deep space blue background #0A1628, neon cyan accent lighting #00F0FF, volumetric light beams radiating from product, minimalist sans-serif typography hierarchy, 25% top white space for headline, professional corporate aesthetic, high-end tech visual, 8K resolution, studio lighting, product photography masterpiece --ar 2:3 --v 6.0 --style raw\n\n【中文翻译】\n科技产品发布会海报，中心放射构图结合三分法，高端智能手机产品悬浮于黄金分割点，深空蓝背景，霓虹青点缀光，从产品放射出的体积光束，极简无衬线字体层级，顶部 25% 留白用于标题，专业企业美学，高端科技视觉，8K 分辨率，影棚灯光，产品摄影杰作\n\n【文字配置说明】\n• 主标题：\"2026 未来科技峰会\" - 思源黑体 Bold，超大字号，顶部居中，白色渐变到霓虹蓝\n• 副标题：\"探索·创新·突破\" - 思源黑体 Regular，中号字号，主标题下方，浅灰色\n• 正文：\"2026 年 3 月 15-17 日 | 北京·国家会议中心\" - 底部居中，小号字号\n• 文字效果：轻微阴影 + 微弱发光 + 线性渐变，增强科技感和可读性\n\n【中文文字要求】海报上的所有文字使用中文（汉字），包括标题、副标题、正文等，使用专业中文字体（如思源黑体、站酷高端黑等）\n\n【提示词解析】\n• Tech product launch poster - 主体描述：明确海报类型\n• center radial composition with rule of thirds - 构图方式：中心放射 + 三分法\n• premium smartphone product floating at golden ratio point - 视觉焦点：产品位于黄金分割点\n• deep space blue background #0A1628 - 色彩方案：深空蓝背景（精确色值）\n• neon cyan accent lighting #00F0FF - 点缀色：霓虹青强调光\n• volumetric light beams radiating from product - 光影效果：体积光放射\n• minimalist sans-serif typography hierarchy - 排版层级：极简字体系统\n• 25% top white space for headline - 留白比例：顶部 25% 留白\n• professional corporate aesthetic - 情绪氛围：专业企业美学\n• 8K resolution, studio lighting - 技术参数：分辨率和灯光\n• --ar 2:3 --v 6.0 --style raw - Midjourney 参数"
     }
   ],
   "parameters": {

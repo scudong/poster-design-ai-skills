@@ -14,7 +14,7 @@
     "multi-style",
     "poster-collection"
   ],
-  "systemPrompt": "你是系列海报策划专家，根据用户输入的同一个主题，一次生成 5 组不同风格但视觉统一的系列海报提示词。每组提供英文提示词和中文解析。\n\n重要要求：海报上的所有文字必须使用中文（汉字），包括标题、副标题、正文、装饰文字等。使用专业中文字体（如思源黑体、站酷高端黑、造字工房字体等），确保中文排版美观可读。\n\n输出格式：\n【系列海报 X/5 - 风格名称】\n英文提示词：完整的英文提示词\n中文翻译：英文提示词的翻译\n风格说明：该风格的特点说明\n\n【视觉统一性说明】说明 5 组海报保持统一的元素",
+  "systemPrompt": "你是系列海报策划专家，根据用户输入的同一个主题，一次生成 5 组不同风格但视觉统一的系列海报提示词。每组提供英文提示词和中文解析。\n\n重要要求：海报上的所有文字必须使用中文（汉字），包括标题、副标题、正文、装饰文字等。使用专业中文字体（如思源黑体、站酷高端黑、造字工房字体等），确保中文排版美观可读。\n\n\n  \n文字配置功能（可选）：\n如果用户提供文字配置，请严格按照以下要求生成提示词：\n- 文字内容：使用用户指定的确切文字\n- 文字位置：按照用户要求布局（顶部居中、底部居右、左侧垂直等）\n- 文字样式：使用指定的字体风格（粗体、细体、书法体等）\n- 文字格式：控制字号大小、颜色、透明度、间距等\n- 文字效果：添加阴影、描边、发光、渐变等特效\n\n如果没有提供文字配置，则自动根据主题生成合适的中文文字。\n\n输出格式：\n【系列海报 X/5 - 风格名称】\n英文提示词：完整的英文提示词\n中文翻译：英文提示词的翻译\n风格说明：该风格的特点说明\n\n【视觉统一性说明】说明 5 组海报保持统一的元素",
   "inputSchema": {
     "type": "object",
     "properties": {
@@ -44,6 +44,179 @@
         "description": "画面比例",
         "required": false,
         "default": "2:3"
+      },
+      "textConfig": {
+        "type": "object",
+        "description": "文字配置（可选），用于精确控制海报上的文字内容、位置、样式和格式",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "主标题文字内容（如：\"2026 未来科技峰会\"）"
+          },
+          "subtitle": {
+            "type": "string",
+            "description": "副标题文字内容（如：\"探索·创新·突破\"）"
+          },
+          "bodyText": {
+            "type": "string",
+            "description": "正文文字内容（如：活动时间、地点、主办方等详细信息）"
+          },
+          "position": {
+            "type": "string",
+            "description": "文字整体布局位置",
+            "enum": [
+              "顶部居中",
+              "顶部居左",
+              "顶部居右",
+              "中部居中",
+              "中部居左",
+              "中部居右",
+              "底部居中",
+              "底部居左",
+              "底部居右",
+              "左侧垂直",
+              "右侧垂直",
+              "自定义位置"
+            ]
+          },
+          "titleStyle": {
+            "type": "object",
+            "description": "主标题样式配置",
+            "properties": {
+              "fontFamily": {
+                "type": "string",
+                "description": "字体名称（如：思源黑体 Bold、站酷高端黑、书法体等）",
+                "enum": [
+                  "思源黑体 Bold",
+                  "思源黑体 Regular",
+                  "思源宋体 Bold",
+                  "思源宋体 Regular",
+                  "站酷高端黑",
+                  "站酷黄油体",
+                  "阿里巴巴普惠体 Bold",
+                  "书法体",
+                  "手写体",
+                  "艺术字体"
+                ]
+              },
+              "fontSize": {
+                "type": "string",
+                "description": "字号大小",
+                "enum": [
+                  "超大 (占画面 20-30%)",
+                  "大 (占画面 15-20%)",
+                  "中 (占画面 10-15%)",
+                  "小 (占画面 5-10%)"
+                ]
+              },
+              "fontWeight": {
+                "type": "string",
+                "description": "字体粗细",
+                "enum": [
+                  "特粗",
+                  "粗体",
+                  "常规",
+                  "细体",
+                  "特细"
+                ]
+              },
+              "color": {
+                "type": "string",
+                "description": "文字颜色（如：白色、金色渐变、霓虹蓝色等）"
+              },
+              "spacing": {
+                "type": "string",
+                "description": "字间距",
+                "enum": [
+                  "特宽",
+                  "宽",
+                  "正常",
+                  "窄",
+                  "特窄"
+                ]
+              }
+            }
+          },
+          "subtitleStyle": {
+            "type": "object",
+            "description": "副标题样式配置",
+            "properties": {
+              "fontFamily": {
+                "type": "string",
+                "description": "字体名称"
+              },
+              "fontSize": {
+                "type": "string",
+                "description": "字号大小",
+                "enum": [
+                  "大",
+                  "中",
+                  "小",
+                  "微小"
+                ]
+              },
+              "fontWeight": {
+                "type": "string",
+                "description": "字体粗细",
+                "enum": [
+                  "粗体",
+                  "常规",
+                  "细体"
+                ]
+              },
+              "color": {
+                "type": "string",
+                "description": "文字颜色"
+              }
+            }
+          },
+          "effects": {
+            "type": "object",
+            "description": "文字特效配置",
+            "properties": {
+              "shadow": {
+                "type": "string",
+                "description": "阴影效果",
+                "enum": [
+                  "无",
+                  "轻微阴影",
+                  "明显阴影",
+                  "发光阴影"
+                ]
+              },
+              "stroke": {
+                "type": "string",
+                "description": "描边效果",
+                "enum": [
+                  "无",
+                  "细描边",
+                  "中描边",
+                  "粗描边"
+                ]
+              },
+              "glow": {
+                "type": "string",
+                "description": "发光效果",
+                "enum": [
+                  "无",
+                  "微弱发光",
+                  "明显发光",
+                  "强烈发光"
+                ]
+              },
+              "gradient": {
+                "type": "string",
+                "description": "渐变效果",
+                "enum": [
+                  "无",
+                  "线性渐变",
+                  "径向渐变",
+                  "角度渐变"
+                ]
+              }
+            }
+          }
+        }
       }
     }
   },
@@ -72,7 +245,32 @@
         "coreElement": "金色萨克斯风剪影",
         "colorBase": "深蓝 + 金色",
         "quantity": 5,
-        "aspectRatio": "2:3"
+        "aspectRatio": "2:3",
+        "textConfig": {
+          "title": "2026 未来科技峰会",
+          "subtitle": "探索·创新·突破",
+          "bodyText": "2026 年 3 月 15-17 日 | 北京·国家会议中心",
+          "position": "顶部居中",
+          "titleStyle": {
+            "fontFamily": "思源黑体 Bold",
+            "fontSize": "超大 (占画面 20-30%)",
+            "fontWeight": "粗体",
+            "color": "白色渐变到霓虹蓝",
+            "spacing": "宽"
+          },
+          "subtitleStyle": {
+            "fontFamily": "思源黑体 Regular",
+            "fontSize": "中",
+            "fontWeight": "常规",
+            "color": "浅灰色"
+          },
+          "effects": {
+            "shadow": "轻微阴影",
+            "stroke": "无",
+            "glow": "微弱发光",
+            "gradient": "线性渐变"
+          }
+        }
       },
       "output": "【系列海报 1/5 - 极简主义风格】\n英文提示词：International Jazz Music Festival poster, minimalist design, golden saxophone silhouette centered on deep navy blue background, single spotlight from top, elegant negative space, clean sans-serif typography, subtle gradient, sophisticated and refined, high contrast, professional music event visual --ar 2:3 --v 6.0 --style raw\n\n中文翻译：国际爵士音乐节海报，极简设计，金色萨克斯风剪影居中于深海军蓝背景，顶部单一聚光灯，优雅留白，简洁无衬线字体，微妙渐变，精致高雅，高对比度，专业音乐活动视觉\n\n风格说明：极简主义强调\"少即是多\"，通过大量留白和简洁元素营造高级感\n\n【系列海报 2/5 - 赛博朋克风格】\n英文提示词：International Jazz Music Festival poster, cyberpunk style, golden saxophone silhouette with neon tube lights, deep navy blue background with holographic grid, volumetric fog, laser beams, futuristic jazz aesthetic, glowing musical notes floating, dynamic lighting, urban night atmosphere --ar 2:3 --v 6.0 --style raw\n\n中文翻译：国际爵士音乐节海报，赛博朋克风格，金色萨克斯风剪影配霓虹灯管，深海军蓝背景加全息网格，体积雾，激光束，未来爵士美学，发光音符漂浮，动态灯光，城市夜晚氛围\n\n风格说明：赛博朋克融合未来科技与霓虹光影，营造都市夜晚的迷幻感\n\n【系列海报 3/5 - 包豪斯风格】\n英文提示词：International Jazz Music Festival poster, Bauhaus design movement style, golden saxophone abstract geometric shapes, deep navy blue and gold color blocking, circular and triangular composition, functional typography, grid-based layout, classic modernist aesthetic, balanced proportions --ar 2:3 --v 6.0 --style raw\n\n中文翻译：国际爵士音乐节海报，包豪斯设计运动风格，金色萨克斯风抽象几何形状，深海军蓝与金色色块，圆形与三角形构图，功能性字体，网格布局，经典现代主义美学，平衡比例\n\n风格说明：包豪斯强调功能性与几何构成的完美结合，经典永恒\n\n【系列海报 4/5 - 超现实主义风格】\n英文提示词：International Jazz Music Festival poster, surrealist art style, golden saxophone morphing into flowing musical waves, deep navy blue dreamscape background, floating instruments, melting clocks inspired by Dali, magical atmosphere, imaginative composition, artistic expression --ar 2:3 --v 6.0 --style raw\n\n中文翻译：国际爵士音乐节海报，超现实主义艺术风格，金色萨克斯风变形为流动的音乐波浪，深海军蓝梦境背景，漂浮的乐器，达利风格的融化时钟，魔法氛围，富有想象力的构图，艺术表现\n\n风格说明：超现实主义突破现实束缚，创造梦幻般的视觉体验\n\n【系列海报 5/5 - 手绘插画风格】\n英文提示词：International Jazz Music Festival poster, hand-drawn illustration style, golden saxophone with watercolor texture, deep navy blue ink wash background, visible brush strokes, organic shapes, warm analog feel, artistic imperfections, jazz club ambiance, expressive and soulful --ar 2:3 --v 6.0 --style raw\n\n中文翻译：国际爵士音乐节海报，手绘插画风格，金色萨克斯风带水彩质感，深海军蓝水墨背景，可见笔触，有机形状，温暖模拟感，艺术不完美感，爵士俱乐部氛围，富有表现力和灵魂\n\n风格说明：手绘插画风格温暖有人情味，适合营造爵士乐的即兴感\n\n【视觉统一性说明】\n所有 5 组海报保持：\n• 核心元素：金色萨克斯风剪影\n• 色彩基调：深蓝 + 金色配色方案\n• 主题氛围：爵士音乐主题\n• 品质定位：专业活动级别视觉\n通过不同艺术风格实现差异化，适合系列宣传、社交媒体矩阵、多场景投放"
     }
