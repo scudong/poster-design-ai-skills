@@ -1,14 +1,14 @@
 {
   "name": "midjourney-style-matcher",
   "version": "1.0.0",
-  "description": "Midjourney 艺术风格匹配引擎 - 根据主题自动匹配艺术流派、代表艺术家、色彩调性、视觉关键词",
+  "description": "Midjourney 艺术风格匹配引擎 - 根据主题自动匹配艺术流派、代表艺术家、色彩调性、视觉关键词（英文 + 中文解析）",
   "author": "Poster Design AI Team",
   "license": "MIT",
   "type": "style-engine",
   "platform": "midjourney",
   "category": "art-direction",
   "tags": ["style", "artist", "art-movement", "color-theory", "midjourney"],
-  "systemPrompt": "你是艺术风格专家，精通艺术史、现代设计、当代艺术趋势。根据用户输入的主题或使用场景，自动匹配最适合的艺术流派、代表艺术家、色彩调性、视觉关键词。输出简洁、专业、可直接嵌入 Midjourney 提示词的风格描述。每个类别提供 3-5 个选项，用逗号分隔，不解释、不废话。",
+  "systemPrompt": "你是艺术风格专家，精通艺术史、现代设计、当代艺术趋势。根据用户输入的主题或使用场景，自动匹配最适合的艺术流派、代表艺术家、色彩调性、视觉关键词，并生成英文提示词和中文解析。\n\n输出格式：\n【艺术流派】英文 + 中文翻译\n【代表艺术家】英文 + 中文翻译\n【色彩调性】英文 + 中文翻译\n【视觉关键词】英文 + 中文翻译\n【推荐风格组合】英文提示词 + 中文翻译\n【提示词解析】解释每个组成部分的作用",
   "inputSchema": {
     "type": "object",
     "properties": {
@@ -29,8 +29,7 @@
       }
     }
   },
-  "outputFormat": "structured-style-guide",
-  "responseTemplate": "【艺术流派】{artMovements}\n【代表艺术家】{artists}\n【色彩调性】{colorTonality}\n【视觉关键词】{visualKeywords}\n【推荐风格组合】{recommendedStyle}",
+  "outputFormat": "bilingual-style-guide",
   "styleDatabase": {
     "technology": {
       "movements": ["Futurism", "Cyberpunk", "Minimalism", "Bauhaus", "Digital Art"],
@@ -55,12 +54,12 @@
         "industry": "娱乐",
         "targetAudience": "年轻人"
       },
-      "output": "【艺术流派】Cyberpunk, Futurism, Rave Culture, Digital Art, Glitch Art\n【代表艺术家】Android Jones, Beeple, Ash Thorp, Reza Aliyan, VJ Suave\n【色彩调性】Neon Fluorescent, UV Reactive Colors, Laser Beam Gradient, Dark Background with Bright Accents\n【视觉关键词】Energy, Motion, Light Trails, Geometric Patterns, Fractal, Psychedelic, Immersive\n【推荐风格组合】Cyberpunk + Neon Fluorescent + Fractal Geometry + Dynamic Motion Blur"
+      "output": "【艺术流派】\n• Cyberpunk - 赛博朋克：未来科技与反乌托邦美学\n• Futurism - 未来主义：速度、技术、动态感\n• Rave Culture - 锐舞文化：电子音乐、霓虹灯光\n• Digital Art - 数字艺术：CG 技术、虚拟视觉\n• Glitch Art - 故障艺术：数字失真、像素化\n\n【代表艺术家】\n• Android Jones - 迷幻数字艺术先驱\n• Beeple - 3D 数字艺术家\n• Ash Thorp - 科幻概念设计师\n• Reza Aliyan - 动态图形艺术家\n• VJ Suave - 视听艺术组合\n\n【色彩调性】\n• Neon Fluorescent - 霓虹荧光色：高饱和度、UV 反应\n• UV Reactive Colors - UV 反应色：紫外光下发光\n• Laser Beam Gradient - 激光束渐变：锐利光束效果\n• Dark Background with Bright Accents - 深色背景 + 亮色点缀\n\n【视觉关键词】\n• Energy - 能量感\n• Motion - 运动感\n• Light Trails - 光轨效果\n• Geometric Patterns - 几何图案\n• Fractal - 分形图案\n• Psychedelic - 迷幻效果\n• Immersive - 沉浸式体验\n\n【推荐风格组合】\n英文：Cyberpunk + Neon Fluorescent + Fractal Geometry + Dynamic Motion Blur\n中文：赛博朋克风格 + 霓虹荧光色 + 分形几何 + 动态运动模糊\n\n【提示词解析】\n• Cyberpunk - 确定整体视觉风格基调\n• Neon Fluorescent - 提供高饱和度色彩方案\n• Fractal Geometry - 增加复杂几何细节\n• Dynamic Motion Blur - 营造动感和能量"
     }
   ],
   "parameters": {
     "temperature": 0.6,
-    "maxTokens": 400,
+    "maxTokens": 800,
     "topP": 0.85
   },
   "metadata": {

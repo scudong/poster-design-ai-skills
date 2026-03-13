@@ -1,14 +1,14 @@
 {
   "name": "midjourney-poster-generator",
   "version": "1.0.0",
-  "description": "Midjourney 主海报生成 - 专业艺术策展设计师，根据主题、风格、氛围生成可粘贴到 Midjourney 的完整海报提示词",
+  "description": "Midjourney 主海报生成 - 专业艺术策展设计师，根据主题、风格、氛围生成可粘贴到 Midjourney 的完整海报提示词（英文 + 中文解析）",
   "author": "Poster Design AI Team",
   "license": "MIT",
   "type": "prompt-generator",
   "platform": "midjourney",
   "category": "poster-design",
   "tags": ["poster", "midjourney", "prompt", "curator", "art-direction"],
-  "systemPrompt": "你是专业艺术策展设计师，精通海报设计、艺术展览、活动主 KV、系列海报、版式构图、色彩美学、视觉层级、留白呼吸感、高级感设计。根据用户输入的主题、风格、氛围，直接生成可粘贴到 Midjourney 的完整海报提示词。输出必须包含：主题描述、艺术风格、构图方式、光影效果、色彩方案、材质质感、排版层级、分辨率、画面情绪。输出纯提示词，不解释、不换行、不废话，所有关键词用逗号分隔，保持单段连续文本。",
+  "systemPrompt": "你是专业艺术策展设计师，精通海报设计、艺术展览、活动主 KV、系列海报、版式构图、色彩美学、视觉层级、留白呼吸感、高级感设计。根据用户输入的主题、风格、氛围，生成英文提示词并提供中文解析。\n\n输出格式：\n【英文提示词】完整的英文提示词，可直接用于 Midjourney\n【中文翻译】英文提示词的中文翻译\n【提示词解析】按组成部分详细解释每个关键词的作用\n\n英文提示词必须包含：subject, art style, composition, lighting, color scheme, texture, typography, resolution, mood",
   "inputSchema": {
     "type": "object",
     "properties": {
@@ -40,8 +40,7 @@
       }
     }
   },
-  "outputFormat": "pure-prompt",
-  "promptTemplate": "{theme}, {style} style, {composition}, {lighting}, {colorPalette}, {texture}, {typographyHierarchy}, {resolution}, {mood}, professional poster design, art direction, visual communication, high-end aesthetic --ar {aspectRatio} --v 6.0 --style raw",
+  "outputFormat": "bilingual-with-explanation",
   "examples": [
     {
       "input": {
@@ -51,12 +50,12 @@
         "colorScheme": "霓虹蓝紫撞色",
         "aspectRatio": "2:3"
       },
-      "output": "未来科技峰会主视觉海报，赛博朋克风格，中心放射式构图，主体为发光科技球体悬浮于数字矩阵之上，体积光穿透大气，霓虹蓝紫撞色配色，金属质感与全息投影材质结合，主标题采用无衬线粗体置于视觉焦点，副标题层级分明留白呼吸，8K 超高清分辨率，神秘震撼的未来科技感，专业海报设计，艺术指导级别，视觉传达 masterpiece --ar 2:3 --v 6.0 --style raw"
+      "output": "【英文提示词】\nFuturistic tech summit poster, cyberpunk style, center radial composition, glowing tech sphere floating above digital matrix, volumetric light beams, neon blue and purple color scheme, metallic texture with holographic projection, bold sans-serif typography at visual focal point, 8K ultra HD resolution, mysterious and awe-inspiring futuristic atmosphere, professional poster design, art direction masterpiece --ar 2:3 --v 6.0 --style raw\n\n【中文翻译】\n未来科技峰会海报，赛博朋克风格，中心放射构图，发光的科技球体悬浮在数字矩阵之上，体积光束，霓虹蓝紫配色，金属质感与全息投影，视觉焦点处的粗体无衬线字体，8K 超高清分辨率，神秘震撼的未来氛围，专业海报设计，艺术指导杰作\n\n【提示词解析】\n• Futuristic tech summit poster - 主体描述：明确海报类型和主题\n• cyberpunk style - 艺术风格：确定视觉风格基调\n• center radial composition - 构图方式：中心放射式构图\n• glowing tech sphere floating above digital matrix - 核心视觉元素：发光球体 + 数字矩阵\n• volumetric light beams - 光影效果：体积光增强氛围\n• neon blue and purple color scheme - 色彩方案：霓虹蓝紫撞色\n• metallic texture with holographic projection - 材质质感：金属 + 全息投影\n• bold sans-serif typography at visual focal point - 排版层级：粗体无衬线字体置于视觉焦点\n• 8K ultra HD resolution - 技术参数：分辨率要求\n• mysterious and awe-inspiring futuristic atmosphere - 氛围情绪：神秘震撼的未来感\n• --ar 2:3 --v 6.0 --style raw - Midjourney 参数：画面比例、版本、风格模式"
     }
   ],
   "parameters": {
     "temperature": 0.7,
-    "maxTokens": 500,
+    "maxTokens": 800,
     "topP": 0.9
   },
   "metadata": {

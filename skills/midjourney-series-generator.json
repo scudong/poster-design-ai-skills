@@ -1,14 +1,14 @@
 {
   "name": "midjourney-series-generator",
   "version": "1.0.0",
-  "description": "Midjourney 系列海报批量生成器 - 根据同一主题一次生成 5 组不同风格的系列海报提示词，保持视觉统一性",
+  "description": "Midjourney 系列海报批量生成器 - 根据同一主题一次生成 5 组不同风格的系列海报提示词，保持视觉统一性（英文 + 中文解析）",
   "author": "Poster Design AI Team",
   "license": "MIT",
   "type": "batch-generator",
   "platform": "midjourney",
   "category": "series-production",
   "tags": ["series", "batch", "consistency", "multi-style", "poster-collection"],
-  "systemPrompt": "你是系列海报策划专家，根据用户输入的同一个主题，一次生成 5 组不同风格但视觉统一的系列海报提示词。每组保持：统一的核心元素、统一的色彩基调、统一的品牌识别，但在艺术风格、构图方式、表现手法上有所变化。适合展览、活动、宣传系列使用。直接输出 5 个可用的完整 Midjourney 提示词，编号清晰，不解释、不废话。",
+  "systemPrompt": "你是系列海报策划专家，根据用户输入的同一个主题，一次生成 5 组不同风格但视觉统一的系列海报提示词。每组提供英文提示词和中文解析。\n\n输出格式：\n【系列海报 X/5 - 风格名称】\n英文提示词：完整的英文提示词\n中文翻译：英文提示词的翻译\n风格说明：该风格的特点说明\n\n【视觉统一性说明】说明 5 组海报保持统一的元素",
   "inputSchema": {
     "type": "object",
     "properties": {
@@ -41,8 +41,7 @@
       }
     }
   },
-  "outputFormat": "numbered-series-prompts",
-  "responseTemplate": "【系列海报 1/5 - {style1}】\n{prompt1}\n\n【系列海报 2/5 - {style2}】\n{prompt2}\n\n【系列海报 3/5 - {style3}】\n{prompt3}\n\n【系列海报 4/5 - {style4}】\n{prompt4}\n\n【系列海报 5/5 - {style5}】\n{prompt5}\n\n【视觉统一性说明】{consistencyNotes}",
+  "outputFormat": "bilingual-series",
   "consistencyRules": [
     "保持核心元素在所有 5 组中出现且位置相似",
     "保持色彩基调统一，允许 20-30% 的变化",
@@ -69,18 +68,18 @@
         "quantity": 5,
         "aspectRatio": "2:3"
       },
-      "output": "【系列海报 1/5 - 极简主义风格】\nInternational Jazz Music Festival poster, minimalist design, golden saxophone silhouette centered on deep navy blue background, single spotlight from top, elegant negative space, clean sans-serif typography, subtle gradient, sophisticated and refined, high contrast, professional music event visual --ar 2:3 --v 6.0 --style raw\n\n【系列海报 2/5 - 赛博朋克风格】\nInternational Jazz Music Festival poster, cyberpunk style, golden saxophone silhouette with neon tube lights, deep navy blue background with holographic grid, volumetric fog, laser beams, futuristic jazz aesthetic, glowing musical notes floating, dynamic lighting, urban night atmosphere --ar 2:3 --v 6.0 --style raw\n\n【系列海报 3/5 - 包豪斯风格】\nInternational Jazz Music Festival poster, Bauhaus design movement style, golden saxophone abstract geometric shapes, deep navy blue and gold color blocking, circular and triangular composition, functional typography, grid-based layout, classic modernist aesthetic, balanced proportions --ar 2:3 --v 6.0 --style raw\n\n【系列海报 4/5 - 超现实主义风格】\nInternational Jazz Music Festival poster, surrealist art style, golden saxophone morphing into flowing musical waves, deep navy blue dreamscape background, floating instruments, melting clocks inspired by Dali, magical atmosphere, imaginative composition, artistic expression --ar 2:3 --v 6.0 --style raw\n\n【系列海报 5/5 - 手绘插画风格】\nInternational Jazz Music Festival poster, hand-drawn illustration style, golden saxophone with watercolor texture, deep navy blue ink wash background, visible brush strokes, organic shapes, warm analog feel, artistic imperfections, jazz club ambiance, expressive and soulful --ar 2:3 --v 6.0 --style raw\n\n【视觉统一性说明】所有 5 组海报保持：金色萨克斯风剪影作为核心元素、深蓝 + 金色作为基础配色、爵士音乐主题氛围、专业活动级别视觉品质。通过不同艺术风格实现差异化，适合系列宣传、社交媒体矩阵、多场景投放。"
+      "output": "【系列海报 1/5 - 极简主义风格】\n英文提示词：International Jazz Music Festival poster, minimalist design, golden saxophone silhouette centered on deep navy blue background, single spotlight from top, elegant negative space, clean sans-serif typography, subtle gradient, sophisticated and refined, high contrast, professional music event visual --ar 2:3 --v 6.0 --style raw\n\n中文翻译：国际爵士音乐节海报，极简设计，金色萨克斯风剪影居中于深海军蓝背景，顶部单一聚光灯，优雅留白，简洁无衬线字体，微妙渐变，精致高雅，高对比度，专业音乐活动视觉\n\n风格说明：极简主义强调\"少即是多\"，通过大量留白和简洁元素营造高级感\n\n【系列海报 2/5 - 赛博朋克风格】\n英文提示词：International Jazz Music Festival poster, cyberpunk style, golden saxophone silhouette with neon tube lights, deep navy blue background with holographic grid, volumetric fog, laser beams, futuristic jazz aesthetic, glowing musical notes floating, dynamic lighting, urban night atmosphere --ar 2:3 --v 6.0 --style raw\n\n中文翻译：国际爵士音乐节海报，赛博朋克风格，金色萨克斯风剪影配霓虹灯管，深海军蓝背景加全息网格，体积雾，激光束，未来爵士美学，发光音符漂浮，动态灯光，城市夜晚氛围\n\n风格说明：赛博朋克融合未来科技与霓虹光影，营造都市夜晚的迷幻感\n\n【系列海报 3/5 - 包豪斯风格】\n英文提示词：International Jazz Music Festival poster, Bauhaus design movement style, golden saxophone abstract geometric shapes, deep navy blue and gold color blocking, circular and triangular composition, functional typography, grid-based layout, classic modernist aesthetic, balanced proportions --ar 2:3 --v 6.0 --style raw\n\n中文翻译：国际爵士音乐节海报，包豪斯设计运动风格，金色萨克斯风抽象几何形状，深海军蓝与金色色块，圆形与三角形构图，功能性字体，网格布局，经典现代主义美学，平衡比例\n\n风格说明：包豪斯强调功能性与几何构成的完美结合，经典永恒\n\n【系列海报 4/5 - 超现实主义风格】\n英文提示词：International Jazz Music Festival poster, surrealist art style, golden saxophone morphing into flowing musical waves, deep navy blue dreamscape background, floating instruments, melting clocks inspired by Dali, magical atmosphere, imaginative composition, artistic expression --ar 2:3 --v 6.0 --style raw\n\n中文翻译：国际爵士音乐节海报，超现实主义艺术风格，金色萨克斯风变形为流动的音乐波浪，深海军蓝梦境背景，漂浮的乐器，达利风格的融化时钟，魔法氛围，富有想象力的构图，艺术表现\n\n风格说明：超现实主义突破现实束缚，创造梦幻般的视觉体验\n\n【系列海报 5/5 - 手绘插画风格】\n英文提示词：International Jazz Music Festival poster, hand-drawn illustration style, golden saxophone with watercolor texture, deep navy blue ink wash background, visible brush strokes, organic shapes, warm analog feel, artistic imperfections, jazz club ambiance, expressive and soulful --ar 2:3 --v 6.0 --style raw\n\n中文翻译：国际爵士音乐节海报，手绘插画风格，金色萨克斯风带水彩质感，深海军蓝水墨背景，可见笔触，有机形状，温暖模拟感，艺术不完美感，爵士俱乐部氛围，富有表现力和灵魂\n\n风格说明：手绘插画风格温暖有人情味，适合营造爵士乐的即兴感\n\n【视觉统一性说明】\n所有 5 组海报保持：\n• 核心元素：金色萨克斯风剪影\n• 色彩基调：深蓝 + 金色配色方案\n• 主题氛围：爵士音乐主题\n• 品质定位：专业活动级别视觉\n通过不同艺术风格实现差异化，适合系列宣传、社交媒体矩阵、多场景投放"
     }
   ],
   "parameters": {
     "temperature": 0.75,
-    "maxTokens": 1200,
+    "maxTokens": 1500,
     "topP": 0.92
   },
   "metadata": {
     "createdAt": "2026-03-13",
     "updatedAt": "2026-03-13",
     "skillLevel": "professional",
-    "targetUsers": ["brand-designers", "campaign-managers", "art-directors", "marketing-teams"]
+    "targetUsers": ["designers", "art-directors", "marketing-teams"]
   }
 }
