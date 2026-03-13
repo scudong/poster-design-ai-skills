@@ -1,6 +1,6 @@
-# 安装教程
+# 安装与卸载教程
 
-本教程将指导您完成海报设计 AI 技能工具包的安装，支持多种安装方式。
+本教程将指导您完成海报设计 AI 技能工具包的安装和卸载。
 
 ---
 
@@ -8,10 +8,10 @@
 
 ### 系统要求
 
-- **操作系统**: Windows 10/11, macOS 10.15+, Linux
+- **操作系统**: macOS 10.15+, Windows 10/11, Linux
 - **Node.js**: >= 18.0.0
 - **npm**: >= 9.0.0
-- **Claude Desktop**: 最新版本 或 支持 MCP 的客户端
+- **Claude Desktop**: 最新版本
 
 ### 检查环境
 
@@ -25,26 +25,14 @@ npm -v
 # 应输出：9.x.x 或更高
 ```
 
-如版本过低，请前往 [Node.js 官网](https://nodejs.org/) 下载安装。
-
 ---
 
-## 🚀 安装方式一：一键安装脚本（macOS 推荐）✨
+## 🚀 安装方式
 
-这是**最简单**的安装方式，只需一条命令！
-
-### macOS 用户
+### 方式一：macOS 一键安装（最简单）✨
 
 ```bash
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/scudong/poster-design-ai-skills/main/install-macos.sh)"
-```
-
-或者克隆后运行：
-
-```bash
-git clone https://github.com/scudong/poster-design-ai-skills.git ~/poster-skills
-cd ~/poster-skills
-bash install-macos.sh
 ```
 
 安装脚本会自动：
@@ -53,31 +41,29 @@ bash install-macos.sh
 3. ✅ 配置 Claude Desktop
 4. ✅ 创建 MCP 服务器配置
 
-### 验证安装
+### 方式二：手动安装
 
-重启 Claude Desktop 后，输入：
+```bash
+# 1. 克隆项目
+git clone https://github.com/scudong/poster-design-ai-skills.git ~/poster-skills
+cd ~/poster-skills
+
+# 2. 运行安装脚本
+bash install-macos.sh
 ```
-列出可用的海报设计技能
-```
 
-如能看到 8 个技能，则安装成功。
+### 方式三：手动配置 Claude Desktop
 
-**完成！** 🎉
-
----
-
-## 🛠️ 安装方式二：手动配置 Claude Desktop
-
-### 步骤 1：找到 Claude Desktop 配置目录
-
-**Windows:**
-```
-%APPDATA%\Claude\
-```
+#### 步骤 1：找到配置目录
 
 **macOS:**
 ```
 ~/Library/Application Support/Claude/
+```
+
+**Windows:**
+```
+%APPDATA%\Claude\
 ```
 
 **Linux:**
@@ -85,284 +71,262 @@ bash install-macos.sh
 ~/.config/Claude/
 ```
 
-### 步骤 2：编辑 `claude_desktop_config.json`
+#### 步骤 2：编辑配置文件
 
-在配置目录中找到或创建 `claude_desktop_config.json` 文件，添加以下内容：
+编辑 `claude_desktop_config.json`，添加：
 
 ```json
 {
   "mcpServers": {
     "poster-design-skills": {
       "command": "node",
-      "args": ["/absolute/path/to/poster-design-ai-skills/skills/index.js"],
-      "cwd": "/absolute/path/to/poster-design-ai-skills",
-      "env": {}
+      "args": ["/Users/YOUR_USERNAME/poster-skills/skills/index.js"],
+      "cwd": "/Users/YOUR_USERNAME/poster-skills"
     }
   }
 }
 ```
 
-**重要**: 将 `/absolute/path/to/poster-design-ai-skills` 替换为实际的项目绝对路径。
+**重要**: 替换 `YOUR_USERNAME` 为你的实际用户名。
 
-### 步骤 3：复制技能文件
+#### 步骤 3：重启 Claude Desktop
 
-将 `skills/` 目录下的所有 `.json` 文件复制到 Claude Desktop 的技能目录：
+完全退出并重新启动。
 
-**Windows:**
-```
-%APPDATA%\Claude\skills\
-```
+---
 
-**macOS:**
-```
-~/Library/Application Support/Claude/skills/
-```
+## ✅ 验证安装
 
-**Linux:**
-```
-~/.config/Claude/skills/
-```
+### 方法 1：在 Claude Desktop 中测试
 
-### 步骤 4：重启 Claude Desktop
-
-完全退出 Claude Desktop 并重新启动。
-
-### 步骤 5：验证技能已加载
-
-在 Claude Desktop 中输入：
-
+打开 Claude Desktop，输入：
 ```
 列出可用的海报设计技能
 ```
 
 如能看到 8 个技能，则安装成功。
 
----
-
-## 🔧 安装方式三：使用 MCP CLI（开发者推荐）
-
-### 步骤 1：安装 MCP CLI
-
-```bash
-npm install -g @anthropic/mcp-cli
-```
-
-### 步骤 2：全局安装技能
-
-```bash
-cd poster-design-ai-skills
-mcp install ./mcp.json
-```
-
-### 步骤 3：验证安装
-
-```bash
-mcp list
-```
-
-应能看到 `poster-design-skills` 在列表中。
-
----
-
-## 📦 安装方式四：Docker 容器化部署（企业级）
-
-### 步骤 1：构建 Docker 镜像
-
-```bash
-docker build -t poster-skills:latest .
-```
-
-### 步骤 2：运行容器
-
-```bash
-docker run -d \
-  -v $(pwd)/skills:/app/skills \
-  -v $(pwd)/mcp.json:/app/mcp.json \
-  --name poster-skills \
-  poster-skills:latest
-```
-
-### 步骤 3：配置 Claude Desktop 连接到 Docker
-
-在 `claude_desktop_config.json` 中添加：
-
-```json
-{
-  "mcpServers": {
-    "poster-design-skills": {
-      "command": "docker",
-      "args": ["exec", "poster-skills", "node", "/app/skills/index.js"],
-      "cwd": "/app",
-      "env": {}
-    }
-  }
-}
-```
-
----
-
-## ✅ 验证安装
-
-### 方法 1：使用验证脚本
-
-```bash
-npm run validate
-```
-
-输出示例：
-```
-✓ mcp.json 格式正确
-✓ 所有技能文件存在
-✓ 技能 1: midjourney-poster-generator - 验证通过
-✓ 技能 2: midjourney-style-matcher - 验证通过
-✓ 技能 3: midjourney-composition-optimizer - 验证通过
-✓ 技能 4: midjourney-series-generator - 验证通过
-✓ 技能 5: nanobanana-poster-generator - 验证通过
-✓ 技能 6: nanobanana-style-matcher - 验证通过
-✓ 技能 7: nanobanana-composition-optimizer - 验证通过
-✓ 技能 8: nanobanana-series-generator - 验证通过
-
-All skills validated successfully! ✨
-```
-
-### 方法 2：在 Claude Desktop 中测试
-
-1. 打开 Claude Desktop
-2. 输入测试命令：
+### 方法 2：测试技能
 
 ```
 使用 Midjourney 主海报生成技能，生成一个未来科技峰会海报提示词
 ```
 
-3. 检查是否能正确调用技能并输出提示词
+---
 
-### 方法 3：运行测试套件
+## 🗑️ 卸载方式
+
+### 方式一：运行卸载脚本（最简单）
+
+创建一个卸载脚本 `uninstall.sh`：
 
 ```bash
-npm run test
+#!/bin/bash
+
+echo "🗑️  开始卸载海报设计 AI 技能工具包..."
+echo ""
+
+# 1. 找到 Claude Desktop 配置目录
+CONFIG_DIR="$HOME/Library/Application Support/Claude"
+CONFIG_FILE="$CONFIG_DIR/claude_desktop_config.json"
+
+echo "📁 配置目录：$CONFIG_DIR"
+echo ""
+
+# 2. 备份配置
+if [ -f "$CONFIG_FILE" ]; then
+    echo "📋 备份配置文件..."
+    cp "$CONFIG_FILE" "$CONFIG_FILE.backup.$(date +%Y%m%d%H%M%S)"
+    echo "✅ 备份完成"
+    echo ""
+fi
+
+# 3. 移除 MCP 配置
+echo "🔧 移除 MCP 配置..."
+if command -v jq &> /dev/null; then
+    # 使用 jq 处理 JSON
+    jq 'del(.mcpServers."poster-design-skills")' "$CONFIG_FILE" > "$CONFIG_FILE.tmp" && \
+    mv "$CONFIG_FILE.tmp" "$CONFIG_FILE"
+    echo "✅ 已移除 poster-design-skills 配置"
+else
+    # 手动处理（简单情况）
+    cat "$CONFIG_FILE" | grep -v "poster-design-skills" > "$CONFIG_FILE.tmp"
+    mv "$CONFIG_FILE.tmp" "$CONFIG_FILE"
+    echo "⚠️  建议手动检查配置文件"
+fi
+echo ""
+
+# 4. 删除项目文件
+echo "🗑️  删除项目文件..."
+if [ -d "$HOME/poster-skills" ]; then
+    rm -rf "$HOME/poster-skills"
+    echo "✅ 已删除 ~/poster-skills"
+else
+    echo "ℹ️  ~/poster-skills 不存在"
+fi
+echo ""
+
+# 5. 清理缓存
+echo "🧹 清理缓存..."
+CACHE_DIR="$HOME/Library/Caches/Claude"
+if [ -d "$CACHE_DIR" ]; then
+    rm -rf "$CACHE_DIR"/*
+    echo "✅ 已清理缓存"
+fi
+echo ""
+
+# 6. 完成
+echo "✅ 卸载完成！"
+echo ""
+echo "📝 请重启 Claude Desktop 以应用更改"
+echo "📋 配置备份已保存：$CONFIG_FILE.backup.*"
+```
+
+保存后运行：
+```bash
+bash uninstall.sh
+```
+
+### 方式二：手动卸载
+
+#### 步骤 1：移除 MCP 配置
+
+1. 打开 Claude Desktop 配置目录：
+   ```bash
+   open ~/Library/Application\ Support/Claude/
+   ```
+
+2. 编辑 `claude_desktop_config.json`
+
+3. 删除或注释掉 `poster-design-skills` 配置：
+   ```json
+   {
+     "mcpServers": {
+       // "poster-design-skills": {
+       //   "command": "node",
+       //   "args": ["/Users/YOUR_USERNAME/poster-skills/skills/index.js"],
+       //   "cwd": "/Users/YOUR_USERNAME/poster-skills"
+       // }
+     }
+   }
+   ```
+
+4. 保存文件
+
+#### 步骤 2：删除项目文件
+
+```bash
+rm -rf ~/poster-skills
+```
+
+#### 步骤 3：清理缓存（可选）
+
+```bash
+rm -rf ~/Library/Caches/Claude/*
+```
+
+#### 步骤 4：重启 Claude Desktop
+
+完全退出并重新启动。
+
+### 方式三：完全清理（删除所有痕迹）
+
+```bash
+#!/bin/bash
+
+echo "🗑️  完全清理海报设计 AI 技能工具包..."
+echo ""
+
+# 1. 移除配置
+CONFIG_DIR="$HOME/Library/Application Support/Claude"
+CONFIG_FILE="$CONFIG_DIR/claude_desktop_config.json"
+
+if [ -f "$CONFIG_FILE" ]; then
+    # 创建不含 poster-design-skills 的新配置
+    cat "$CONFIG_FILE" | grep -v "poster-design-skills" > "$CONFIG_FILE.tmp"
+    mv "$CONFIG_FILE.tmp" "$CONFIG_FILE"
+    echo "✅ 已清理配置"
+fi
+
+# 2. 删除项目
+if [ -d "$HOME/poster-skills" ]; then
+    rm -rf "$HOME/poster-skills"
+    echo "✅ 已删除项目"
+fi
+
+# 3. 清理缓存
+CACHE_DIR="$HOME/Library/Caches/Claude"
+if [ -d "$CACHE_DIR" ]; then
+    rm -rf "$CACHE_DIR"/*
+    echo "✅ 已清理缓存"
+fi
+
+# 4. 删除日志
+LOG_DIR="$HOME/Library/Logs/Claude"
+if [ -d "$LOG_DIR" ]; then
+    rm -rf "$LOG_DIR"/claude*.log
+    echo "✅ 已清理日志"
+fi
+
+echo ""
+echo "✅ 完全清理完成！"
+echo "📝 请重启 Claude Desktop"
 ```
 
 ---
 
 ## 🔍 故障排查
 
-### 问题 1：找不到 Node.js
+### 问题 1：技能未加载
 
-**错误信息**: `command not found: node`
+**症状**: Claude Desktop 中看不到技能
 
-**解决方案**:
-```bash
-# 安装 Node.js (macOS)
-brew install node@18
-
-# 安装 Node.js (Windows)
-# 前往 https://nodejs.org/ 下载安装
-
-# 安装 Node.js (Linux)
-curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
-sudo apt-get install -y nodejs
-```
-
-### 问题 2：权限错误
-
-**错误信息**: `EACCES: permission denied`
-
-**解决方案**:
-```bash
-# macOS/Linux
-sudo chown -R $(whoami) ~/.npm
-sudo chown -R $(whoami) /path/to/poster-design-ai-skills
-
-# 或使用 nvm 避免权限问题
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
-nvm install 18
-nvm use 18
-```
-
-### 问题 3：Claude Desktop 不识别技能
-
-**解决方案**:
-1. 确认 `claude_desktop_config.json` 路径正确
-2. 确认技能文件已复制到正确的目录
-3. 完全退出 Claude Desktop（包括系统托盘）
-4. 重新启动 Claude Desktop
-5. 检查 Claude Desktop 是否为最新版本
-
-### 问题 4：技能文件路径错误
-
-**解决方案**:
-```bash
-# 使用绝对路径
-cd /absolute/path/to/poster-design-ai-skills
-pwd  # 复制输出的绝对路径
-
-# 更新 claude_desktop_config.json 中的路径
-```
-
-### 问题 5：429 或 1113 错误
-
-这是 API 限流或配置问题，请查看 [故障排查文档](docs/troubleshooting.md)
-
----
-
-## 🔄 更新技能
-
-### 从 GitHub 更新
-
-```bash
-cd poster-design-ai-skills
-git pull origin main
-npm run install:skills
-npm run validate
-```
-
-### 手动更新
-
-1. 下载最新版本的技能文件
-2. 替换 `skills/` 目录下的对应文件
+**解决方法**:
+1. 检查配置文件路径是否正确
+2. 确认 Node.js 已安装：`node -v`
 3. 重启 Claude Desktop
+4. 查看日志：`~/Library/Logs/Claude/`
 
----
+### 问题 2：MCP 服务器无法启动
 
-## 🗑️ 卸载技能
+**症状**: 提示 "Could not attach to MCP server"
 
-### 方法 1：使用卸载脚本
-
+**解决方法**:
 ```bash
-npm run uninstall:skills
+# 运行自动修复脚本
+bash ~/poster-skills/fix-mcp-connection.sh
 ```
 
-### 方法 2：手动卸载
+或手动检查：
+1. 确认 `skills/index.js` 存在
+2. 检查配置文件中的路径
+3. 测试服务器：`node ~/poster-skills/skills/index.js`
 
-1. 编辑 `claude_desktop_config.json`
-2. 删除 `poster-design-skills` 配置块
-3. 删除技能目录中的技能文件
-4. 重启 Claude Desktop
+### 问题 3：卸载后仍有残留
 
+**解决方法**:
 ```bash
-# macOS/Linux
-rm -rf ~/Library/Application\ Support/Claude/skills/midjourney-*.json
-rm -rf ~/Library/Application\ Support/Claude/skills/nanobanana-*.json
-
-# Windows
-del "%APPDATA%\Claude\skills\midjourney-*.json"
-del "%APPDATA%\Claude\skills\nanobanana-*.json"
+# 完全清理
+rm -rf ~/poster-skills
+rm -rf ~/Library/Caches/Claude/*
+# 手动检查配置文件
+open ~/Library/Application\ Support/Claude/
 ```
 
 ---
 
 ## 📞 获取帮助
 
-如遇到其他问题，请：
+如遇到问题，请查看：
 
-1. 查看 [常见问题](README.md#故障排查)
-2. 查阅 [故障排查文档](docs/troubleshooting.md)
-3. 提交 [GitHub Issue](https://github.com/scudong/poster-design-ai-skills/issues)
+- [故障排查指南](TROUBLESHOOTING_MCP.md)
+- [使用文档](USAGE.md)
+- [GitHub Issues](https://github.com/scudong/poster-design-ai-skills/issues)
 
 ---
 
 <div align="center">
 
-**安装完成后，请继续查看 [使用文档](USAGE.md) 了解如何使用技能**
+**安装简单，卸载更简单！** 🚀
 
 </div>
