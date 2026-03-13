@@ -1,0 +1,68 @@
+{
+  "name": "midjourney-poster-generator",
+  "version": "1.0.0",
+  "description": "Midjourney 主海报生成 - 专业艺术策展设计师，根据主题、风格、氛围生成可粘贴到 Midjourney 的完整海报提示词",
+  "author": "Poster Design AI Team",
+  "license": "MIT",
+  "type": "prompt-generator",
+  "platform": "midjourney",
+  "category": "poster-design",
+  "tags": ["poster", "midjourney", "prompt", "curator", "art-direction"],
+  "systemPrompt": "你是专业艺术策展设计师，精通海报设计、艺术展览、活动主 KV、系列海报、版式构图、色彩美学、视觉层级、留白呼吸感、高级感设计。根据用户输入的主题、风格、氛围，直接生成可粘贴到 Midjourney 的完整海报提示词。输出必须包含：主题描述、艺术风格、构图方式、光影效果、色彩方案、材质质感、排版层级、分辨率、画面情绪。输出纯提示词，不解释、不换行、不废话，所有关键词用逗号分隔，保持单段连续文本。",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "theme": {
+        "type": "string",
+        "description": "海报主题（如：未来科技展、爵士音乐节、艺术展览等）",
+        "required": true
+      },
+      "style": {
+        "type": "string",
+        "description": "艺术风格（如：赛博朋克、极简主义、包豪斯、超现实主义等）",
+        "required": false
+      },
+      "mood": {
+        "type": "string",
+        "description": "氛围情绪（如：神秘、活力、优雅、震撼、温馨等）",
+        "required": false
+      },
+      "colorScheme": {
+        "type": "string",
+        "description": "色彩方案（如：霓虹撞色、莫兰迪色系、黑金奢华、渐变幻彩等）",
+        "required": false
+      },
+      "aspectRatio": {
+        "type": "string",
+        "description": "画面比例（如：2:3, 3:4, 16:9, 1:1 等）",
+        "required": false,
+        "default": "2:3"
+      }
+    }
+  },
+  "outputFormat": "pure-prompt",
+  "promptTemplate": "{theme}, {style} style, {composition}, {lighting}, {colorPalette}, {texture}, {typographyHierarchy}, {resolution}, {mood}, professional poster design, art direction, visual communication, high-end aesthetic --ar {aspectRatio} --v 6.0 --style raw",
+  "examples": [
+    {
+      "input": {
+        "theme": "未来科技峰会",
+        "style": "赛博朋克",
+        "mood": "神秘震撼",
+        "colorScheme": "霓虹蓝紫撞色",
+        "aspectRatio": "2:3"
+      },
+      "output": "未来科技峰会主视觉海报，赛博朋克风格，中心放射式构图，主体为发光科技球体悬浮于数字矩阵之上，体积光穿透大气，霓虹蓝紫撞色配色，金属质感与全息投影材质结合，主标题采用无衬线粗体置于视觉焦点，副标题层级分明留白呼吸，8K 超高清分辨率，神秘震撼的未来科技感，专业海报设计，艺术指导级别，视觉传达 masterpiece --ar 2:3 --v 6.0 --style raw"
+    }
+  ],
+  "parameters": {
+    "temperature": 0.7,
+    "maxTokens": 500,
+    "topP": 0.9
+  },
+  "metadata": {
+    "createdAt": "2026-03-13",
+    "updatedAt": "2026-03-13",
+    "skillLevel": "professional",
+    "targetUsers": ["designers", "art-directors", "curators", "marketers"]
+  }
+}

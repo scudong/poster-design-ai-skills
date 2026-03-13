@@ -1,0 +1,72 @@
+{
+  "name": "midjourney-style-matcher",
+  "version": "1.0.0",
+  "description": "Midjourney 艺术风格匹配引擎 - 根据主题自动匹配艺术流派、代表艺术家、色彩调性、视觉关键词",
+  "author": "Poster Design AI Team",
+  "license": "MIT",
+  "type": "style-engine",
+  "platform": "midjourney",
+  "category": "art-direction",
+  "tags": ["style", "artist", "art-movement", "color-theory", "midjourney"],
+  "systemPrompt": "你是艺术风格专家，精通艺术史、现代设计、当代艺术趋势。根据用户输入的主题或使用场景，自动匹配最适合的艺术流派、代表艺术家、色彩调性、视觉关键词。输出简洁、专业、可直接嵌入 Midjourney 提示词的风格描述。每个类别提供 3-5 个选项，用逗号分隔，不解释、不废话。",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "theme": {
+        "type": "string",
+        "description": "主题或使用场景（如：音乐节、科技发布会、艺术展、品牌宣传等）",
+        "required": true
+      },
+      "industry": {
+        "type": "string",
+        "description": "所属行业（如：科技、时尚、文化、教育、金融等）",
+        "required": false
+      },
+      "targetAudience": {
+        "type": "string",
+        "description": "目标受众（如：年轻人、专业人士、高端客户、大众等）",
+        "required": false
+      }
+    }
+  },
+  "outputFormat": "structured-style-guide",
+  "responseTemplate": "【艺术流派】{artMovements}\n【代表艺术家】{artists}\n【色彩调性】{colorTonality}\n【视觉关键词】{visualKeywords}\n【推荐风格组合】{recommendedStyle}",
+  "styleDatabase": {
+    "technology": {
+      "movements": ["Futurism", "Cyberpunk", "Minimalism", "Bauhaus", "Digital Art"],
+      "artists": ["Syd Mead", "Beeple", "Ash Thorp", "Ian Hubert", "Android Jones"],
+      "colors": ["Neon Cyan & Magenta", "Cool Blue Gradient", "Monochrome with Accent Color", "Holographic Iridescent"]
+    },
+    "fashion": {
+      "movements": ["Art Deco", "High Fashion Editorial", "Glamor Photography", "Pop Art", "Surrealism"],
+      "artists": ["Helmut Newton", "Richard Avedon", "Tim Walker", "Annie Leibovitz", "Guy Bourdin"],
+      "colors": ["Black & Gold Luxury", "Bold Primary Colors", "Pastel Elegance", "High Contrast B&W"]
+    },
+    "culture": {
+      "movements": ["Expressionism", "Impressionism", "Traditional Chinese Painting", "Ukiyo-e", "Art Nouveau"],
+      "artists": ["Van Gogh", "Monet", "Qi Baishi", "Hokusai", "Alphonse Mucha"],
+      "colors": ["Warm Earth Tones", "Muted Heritage Colors", "Ink Wash Gradient", "Rich Jewel Tones"]
+    }
+  },
+  "examples": [
+    {
+      "input": {
+        "theme": "电子音乐节",
+        "industry": "娱乐",
+        "targetAudience": "年轻人"
+      },
+      "output": "【艺术流派】Cyberpunk, Futurism, Rave Culture, Digital Art, Glitch Art\n【代表艺术家】Android Jones, Beeple, Ash Thorp, Reza Aliyan, VJ Suave\n【色彩调性】Neon Fluorescent, UV Reactive Colors, Laser Beam Gradient, Dark Background with Bright Accents\n【视觉关键词】Energy, Motion, Light Trails, Geometric Patterns, Fractal, Psychedelic, Immersive\n【推荐风格组合】Cyberpunk + Neon Fluorescent + Fractal Geometry + Dynamic Motion Blur"
+    }
+  ],
+  "parameters": {
+    "temperature": 0.6,
+    "maxTokens": 400,
+    "topP": 0.85
+  },
+  "metadata": {
+    "createdAt": "2026-03-13",
+    "updatedAt": "2026-03-13",
+    "skillLevel": "professional",
+    "targetUsers": ["designers", "art-directors", "illustrators"]
+  }
+}

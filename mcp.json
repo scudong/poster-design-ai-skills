@@ -1,0 +1,78 @@
+{
+  "name": "poster-design-ai-skills",
+  "version": "1.0.0",
+  "description": "海报设计 AI 技能工具包 - Midjourney + NanoBanana 双平台专业策展系统",
+  "author": "Poster Design AI Team",
+  "license": "MIT",
+  "keywords": [
+    "mcp",
+    "claude",
+    "poster",
+    "midjourney",
+    "nanobanana",
+    "ai-art",
+    "design",
+    "curator"
+  ],
+  "skills": [
+    {
+      "name": "midjourney-poster-generator",
+      "displayName": "Midjourney 主海报生成",
+      "description": "根据主题、风格、氛围生成专业级 Midjourney 海报提示词，包含完整艺术策展要素",
+      "file": "skills/midjourney-poster-generator.json"
+    },
+    {
+      "name": "midjourney-style-matcher",
+      "displayName": "Midjourney 艺术风格匹配",
+      "description": "智能匹配艺术流派、艺术家、色彩调性，输出专业风格关键词",
+      "file": "skills/midjourney-style-matcher.json"
+    },
+    {
+      "name": "midjourney-composition-optimizer",
+      "displayName": "Midjourney 构图色彩优化",
+      "description": "提供高级版式设计：构图方案、视觉焦点、色彩搭配、排版层级",
+      "file": "skills/midjourney-composition-optimizer.json"
+    },
+    {
+      "name": "midjourney-series-generator",
+      "displayName": "Midjourney 系列海报批量生成",
+      "description": "一次生成 5 组不同风格的系列海报提示词，保持视觉统一性",
+      "file": "skills/midjourney-series-generator.json"
+    },
+    {
+      "name": "nanobanana-poster-generator",
+      "displayName": "NanoBanana 主海报生成",
+      "description": "专为 NanoBanana 优化的海报提示词生成器，强化角色一致性",
+      "file": "skills/nanobanana-poster-generator.json"
+    },
+    {
+      "name": "nanobanana-style-matcher",
+      "displayName": "NanoBanana 艺术风格匹配",
+      "description": "NanoBanana 专用艺术风格匹配引擎，支持 IP 风格定位",
+      "file": "skills/nanobanana-style-matcher.json"
+    },
+    {
+      "name": "nanobanana-composition-optimizer",
+      "displayName": "NanoBanana 构图色彩优化",
+      "description": "NanoBanana 专用构图优化，强化角色姿态与场景协调",
+      "file": "skills/nanobanana-composition-optimizer.json"
+    },
+    {
+      "name": "nanobanana-series-generator",
+      "displayName": "NanoBanana 系列海报批量生成",
+      "description": "NanoBanana 专用系列生成器，强制保持角色一致性、IP 稳定、多图统一",
+      "file": "skills/nanobanana-series-generator.json"
+    }
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/poster-design-ai-skills.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-username/poster-design-ai-skills/issues"
+  },
+  "homepage": "https://github.com/your-username/poster-design-ai-skills#readme"
+}

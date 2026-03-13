@@ -1,0 +1,86 @@
+{
+  "name": "midjourney-series-generator",
+  "version": "1.0.0",
+  "description": "Midjourney 系列海报批量生成器 - 根据同一主题一次生成 5 组不同风格的系列海报提示词，保持视觉统一性",
+  "author": "Poster Design AI Team",
+  "license": "MIT",
+  "type": "batch-generator",
+  "platform": "midjourney",
+  "category": "series-production",
+  "tags": ["series", "batch", "consistency", "multi-style", "poster-collection"],
+  "systemPrompt": "你是系列海报策划专家，根据用户输入的同一个主题，一次生成 5 组不同风格但视觉统一的系列海报提示词。每组保持：统一的核心元素、统一的色彩基调、统一的品牌识别，但在艺术风格、构图方式、表现手法上有所变化。适合展览、活动、宣传系列使用。直接输出 5 个可用的完整 Midjourney 提示词，编号清晰，不解释、不废话。",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "theme": {
+        "type": "string",
+        "description": "系列海报统一主题",
+        "required": true
+      },
+      "coreElement": {
+        "type": "string",
+        "description": "必须保持统一的核心视觉元素（如：logo、吉祥物、主图形、品牌色等）",
+        "required": true
+      },
+      "colorBase": {
+        "type": "string",
+        "description": "统一的基础色彩基调",
+        "required": false
+      },
+      "quantity": {
+        "type": "integer",
+        "description": "生成数量（默认 5 组）",
+        "required": false,
+        "default": 5
+      },
+      "aspectRatio": {
+        "type": "string",
+        "description": "画面比例",
+        "required": false,
+        "default": "2:3"
+      }
+    }
+  },
+  "outputFormat": "numbered-series-prompts",
+  "responseTemplate": "【系列海报 1/5 - {style1}】\n{prompt1}\n\n【系列海报 2/5 - {style2}】\n{prompt2}\n\n【系列海报 3/5 - {style3}】\n{prompt3}\n\n【系列海报 4/5 - {style4}】\n{prompt4}\n\n【系列海报 5/5 - {style5}】\n{prompt5}\n\n【视觉统一性说明】{consistencyNotes}",
+  "consistencyRules": [
+    "保持核心元素在所有 5 组中出现且位置相似",
+    "保持色彩基调统一，允许 20-30% 的变化",
+    "保持品牌识别元素（字体、图形语言）一致",
+    "保持画面情绪和氛围的连贯性",
+    "在构图、风格、表现手法上制造差异化"
+  ],
+  "styleVariations": [
+    "极简主义风格 - 减少元素，强调留白和几何感",
+    "赛博朋克风格 - 霓虹光影，未来科技感",
+    "包豪斯风格 - 几何构成，功能主义，经典配色",
+    "超现实主义风格 - 梦幻元素，非常规组合",
+    "手绘插画风格 - 温暖质感，艺术表现力",
+    "3D 渲染风格 - 立体感强，材质细腻",
+    "复古风格 - 怀旧色调，经典版式",
+    "动态模糊风格 - 速度感，运动轨迹"
+  ],
+  "examples": [
+    {
+      "input": {
+        "theme": "国际爵士音乐节",
+        "coreElement": "金色萨克斯风剪影",
+        "colorBase": "深蓝 + 金色",
+        "quantity": 5,
+        "aspectRatio": "2:3"
+      },
+      "output": "【系列海报 1/5 - 极简主义风格】\nInternational Jazz Music Festival poster, minimalist design, golden saxophone silhouette centered on deep navy blue background, single spotlight from top, elegant negative space, clean sans-serif typography, subtle gradient, sophisticated and refined, high contrast, professional music event visual --ar 2:3 --v 6.0 --style raw\n\n【系列海报 2/5 - 赛博朋克风格】\nInternational Jazz Music Festival poster, cyberpunk style, golden saxophone silhouette with neon tube lights, deep navy blue background with holographic grid, volumetric fog, laser beams, futuristic jazz aesthetic, glowing musical notes floating, dynamic lighting, urban night atmosphere --ar 2:3 --v 6.0 --style raw\n\n【系列海报 3/5 - 包豪斯风格】\nInternational Jazz Music Festival poster, Bauhaus design movement style, golden saxophone abstract geometric shapes, deep navy blue and gold color blocking, circular and triangular composition, functional typography, grid-based layout, classic modernist aesthetic, balanced proportions --ar 2:3 --v 6.0 --style raw\n\n【系列海报 4/5 - 超现实主义风格】\nInternational Jazz Music Festival poster, surrealist art style, golden saxophone morphing into flowing musical waves, deep navy blue dreamscape background, floating instruments, melting clocks inspired by Dali, magical atmosphere, imaginative composition, artistic expression --ar 2:3 --v 6.0 --style raw\n\n【系列海报 5/5 - 手绘插画风格】\nInternational Jazz Music Festival poster, hand-drawn illustration style, golden saxophone with watercolor texture, deep navy blue ink wash background, visible brush strokes, organic shapes, warm analog feel, artistic imperfections, jazz club ambiance, expressive and soulful --ar 2:3 --v 6.0 --style raw\n\n【视觉统一性说明】所有 5 组海报保持：金色萨克斯风剪影作为核心元素、深蓝 + 金色作为基础配色、爵士音乐主题氛围、专业活动级别视觉品质。通过不同艺术风格实现差异化，适合系列宣传、社交媒体矩阵、多场景投放。"
+    }
+  ],
+  "parameters": {
+    "temperature": 0.75,
+    "maxTokens": 1200,
+    "topP": 0.92
+  },
+  "metadata": {
+    "createdAt": "2026-03-13",
+    "updatedAt": "2026-03-13",
+    "skillLevel": "professional",
+    "targetUsers": ["brand-designers", "campaign-managers", "art-directors", "marketing-teams"]
+  }
+}

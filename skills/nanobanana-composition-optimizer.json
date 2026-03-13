@@ -1,0 +1,82 @@
+{
+  "name": "nanobanana-composition-optimizer",
+  "version": "1.0.0",
+  "description": "NanoBanana 构图色彩优化专家 - 专为 NanoBanana 优化，强化角色姿态与场景协调，确保角色一致性",
+  "author": "Poster Design AI Team",
+  "license": "MIT",
+  "type": "composition-optimizer",
+  "platform": "nanobanana",
+  "category": "design-optimization",
+  "tags": ["composition", "character-pose", "scene-integration", "nanobanana", "consistency"],
+  "systemPrompt": "你是 NanoBanana 角色场景整合专家，精通角色构图、姿态设计、场景融合、色彩理论。为海报提供专业级优化建议，特别强化：角色姿态与场景的协调性、角色在画面中的位置稳定性、多角度拍摄的一致性、色彩与角色设计的匹配度。输出可直接用于 NanoBanana 生成的描述词，确保角色在不同构图中保持一致性，不崩坏、不变形。",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "content": {
+        "type": "string",
+        "description": "现有提示词或设计描述",
+        "required": true
+      },
+      "characterDescription": {
+        "type": "string",
+        "description": "角色详细描述（用于一致性检查）",
+        "required": false
+      },
+      "focusArea": {
+        "type": "string",
+        "description": "需要优化的重点（如：角色姿态、场景融合、色彩、整体等）",
+        "required": false,
+        "default": "整体"
+      },
+      "format": {
+        "type": "string",
+        "description": "输出格式（横版、竖版、方形）",
+        "required": false,
+        "default": "竖版"
+      }
+    }
+  },
+  "outputFormat": "optimized-prompt-with-character-lock",
+  "responseTemplate": "【构图方案】{composition}\n【角色姿态】{characterPose}\n【场景融合】{sceneIntegration}\n【视觉焦点】{focalPoint}\n【色彩搭配】{colorScheme}\n【角色一致性锁定】{characterLockKeywords}\n【优化后完整提示词】{optimizedPrompt}",
+  "characterPoseLibrary": {
+    "hero": "英雄姿态 - 挺胸抬头，45 度角侧身，一手叉腰一手指向前方，自信有力",
+    "casual": "休闲姿态 - 自然站立，双手插兜或抱胸，轻松随意",
+    "dynamic": "动态姿态 - 跳跃、奔跑、转身，富有动感和张力",
+    "elegant": "优雅姿态 - 芭蕾式站姿，手臂柔和曲线，高贵气质",
+    "cute": "可爱姿态 - 歪头、眨眼、比 V 手势，萌系表情",
+    "professional": "专业姿态 - 正装站立，双手交叠于前，职业微笑",
+    "mysterious": "神秘姿态 - 侧身回头，半遮面，眼神深邃",
+    "powerful": "力量姿态 - 马步站立，双臂展开，气势强大"
+  },
+  "consistencyChecklist": [
+    "角色面部特征描述是否具体（发型、发色、眼睛形状和颜色）",
+    "服装细节是否明确（款式、颜色、图案、材质）",
+    "配饰是否固定（眼镜、首饰、帽子、包包等）",
+    "身体比例是否设定（身高、头身比、体型）",
+    "肤色是否统一描述",
+    "表情风格是否一致",
+    "角色在画面中的大小比例是否稳定"
+  ],
+  "examples": [
+    {
+      "input": {
+        "content": "魔法少女角色站在城市天台上，夜晚场景",
+        "characterDescription": "粉色双马尾长发，紫色大眼睛，穿着蓝白魔法少女制服，手持星星魔杖，身高 160cm，萝莉体型",
+        "focusArea": "整体",
+        "format": "竖版"
+      },
+      "output": "【构图方案】三分法构图，角色位于右侧黄金分割点，城市天际线作为背景层次\n【角色姿态】动态姿态 - 魔法少女单脚站立于天台边缘，一手高举魔杖，一手轻按裙摆，披风飘扬，富有动感\n【场景融合】角色与城市夜景融合，魔杖光芒照亮周围，城市灯光作为背景散景，营造魔法与现实交织的氛围\n【视觉焦点】魔杖顶端的魔法光芒作为第一视觉焦点，角色面部作为第二焦点，形成视觉引导\n【色彩搭配】主色：夜空深蓝 (#0B1026)，辅色：城市暖黄灯光，点缀色：魔法粉紫 (#FF69B4) 和星星金 (#FFD700)，角色制服蓝白保持高饱和度突出\n【角色一致性锁定】pink twin-tail long hair, purple big eyes, blue-white magical girl uniform, star-topped magic wand, 160cm height, loli body type, consistent facial features, stable character design, fixed costume details, unchanged accessory placement, character identity lock\n【优化后完整提示词】Magical girl character standing on city rooftop at night, pink twin-tail long hair, purple big eyes, wearing blue-white magical girl uniform, holding star-topped magic wand, 160cm height loli body type, dynamic pose with one leg on rooftop edge, one hand raising wand high, other hand holding skirt, cape flowing in wind, rule of thirds composition, character at right golden ratio point, city skyline background layers, magical glow from wand illuminating surroundings, city lights as bokeh background, deep night blue #0B1026 main color, warm yellow city lights, magical pink-purple #FF69B4 and star gold #FFD700 accent colors, volumetric lighting, particle effects, sparkles, urban fantasy atmosphere, consistent facial features, stable character design, fixed costume details, character identity lock, IP stable, professional anime poster, 8K resolution --ar 2:3 --nb-v1"
+    }
+  ],
+  "parameters": {
+    "temperature": 0.65,
+    "maxTokens": 700,
+    "topP": 0.88
+  },
+  "metadata": {
+    "createdAt": "2026-03-13",
+    "updatedAt": "2026-03-13",
+    "skillLevel": "professional",
+    "targetUsers": ["character-designers", "anime-artists", "illustrators", "manga-creators"]
+  }
+}

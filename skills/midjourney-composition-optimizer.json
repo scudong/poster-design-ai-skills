@@ -1,0 +1,74 @@
+{
+  "name": "midjourney-composition-optimizer",
+  "version": "1.0.0",
+  "description": "Midjourney 构图色彩优化专家 - 提供高级版式设计：构图方案、视觉焦点、色彩搭配、排版层级、留白比例、情绪氛围",
+  "author": "Poster Design AI Team",
+  "license": "MIT",
+  "type": "composition-optimizer",
+  "platform": "midjourney",
+  "category": "design-optimization",
+  "tags": ["composition", "color-theory", "layout", "typography", "visual-hierarchy"],
+  "systemPrompt": "你是高级版式设计师，精通构图原理、色彩理论、视觉层级、排版设计。为海报提供专业级优化建议：构图方案（黄金分割、三分法、对角线、中心放射等）、视觉焦点位置、色彩搭配方案（主色、辅色、点缀色）、排版层级（主标题、副标题、信息层级）、留白比例、情绪氛围营造。输出可直接用于 Midjourney 生成的描述词，专业、简洁、可执行。",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "content": {
+        "type": "string",
+        "description": "现有提示词或设计描述",
+        "required": true
+      },
+      "focusArea": {
+        "type": "string",
+        "description": "需要优化的重点（如：构图、色彩、排版、整体等）",
+        "required": false,
+        "default": "整体"
+      },
+      "format": {
+        "type": "string",
+        "description": "输出格式（如：横版、竖版、方形）",
+        "required": false,
+        "default": "竖版"
+      }
+    }
+  },
+  "outputFormat": "optimized-prompt-with-analysis",
+  "responseTemplate": "【构图方案】{composition}\n【视觉焦点】{focalPoint}\n【色彩搭配】{colorScheme}\n【排版层级】{typographyHierarchy}\n【留白比例】{whiteSpace}\n【情绪氛围】{mood}\n【优化后完整提示词】{optimizedPrompt}",
+  "compositionLibrary": {
+    "ruleOfThirds": "三分法构图，视觉焦点位于交叉点，平衡稳定",
+    "goldenRatio": "黄金分割螺旋构图，自然引导视线流动",
+    "centerRadial": "中心放射式构图，主体突出，冲击力强",
+    "diagonal": "对角线构图，动态感强，富有张力",
+    "symmetrical": "对称式构图，庄重正式，适合高端场景",
+    "asymmetrical": "非对称构图，灵活生动，现代感强",
+    "frameWithinFrame": "框架式构图，增加层次感和深度",
+    "leadingLines": "引导线构图，自然引导视线至主体"
+  },
+  "colorHarmonies": {
+    "complementary": "互补色搭配，强烈对比，活力四射",
+    "analogous": "邻近色搭配，和谐统一，舒适自然",
+    "triadic": "三角色搭配，丰富平衡，视觉活跃",
+    "monochromatic": "单色搭配，简约高级，层次分明",
+    "splitComplementary": "分裂互补色，对比柔和，富有变化"
+  },
+  "examples": [
+    {
+      "input": {
+        "content": "科技产品发布会海报，蓝色背景，中间放产品",
+        "focusArea": "整体",
+        "format": "竖版"
+      },
+      "output": "【构图方案】中心放射式构图 + 三分法结合，产品位于视觉中心偏上黄金分割点\n【视觉焦点】产品主体占据画面 40% 面积，顶部留白用于标题，底部 1/3 区域放置辅助信息\n【色彩搭配】主色：深空蓝 (#0A1628)，辅色：科技蓝 (#1E3A5F)，点缀色：霓虹青 (#00F0FF) 用于高光和信息强调\n【排版层级】主标题：无衬线粗体 72pt 置于顶部 1/3 区域，副标题：中等字重 36pt 置于主标题下方，正文信息：细体 18pt 置于底部\n【留白比例】顶部留白 25%，两侧各留白 15%，底部留白 20%，确保呼吸感\n【情绪氛围】专业、高端、未来感、可信赖\n【优化后完整提示词】Tech product launch poster, center radial composition with rule of thirds, premium smartphone product floating at golden ratio point, deep space blue background #0A1628, neon cyan accent lighting #00F0FF, volumetric light beams radiating from product, minimalist sans-serif typography hierarchy, 25% top white space for headline, professional corporate aesthetic, high-end tech visual, 8K resolution, studio lighting, product photography masterpiece --ar 2:3 --v 6.0 --style raw"
+    }
+  ],
+  "parameters": {
+    "temperature": 0.65,
+    "maxTokens": 600,
+    "topP": 0.88
+  },
+  "metadata": {
+    "createdAt": "2026-03-13",
+    "updatedAt": "2026-03-13",
+    "skillLevel": "professional",
+    "targetUsers": ["graphic-designers", "art-directors", "layout-artists"]
+  }
+}

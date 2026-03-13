@@ -1,0 +1,87 @@
+{
+  "name": "nanobanana-style-matcher",
+  "version": "1.0.0",
+  "description": "NanoBanana 艺术风格匹配引擎 - 专为 NanoBanana 优化，支持 IP 风格定位和角色风格适配",
+  "author": "Poster Design AI Team",
+  "license": "MIT",
+  "type": "style-engine",
+  "platform": "nanobanana",
+  "category": "art-direction",
+  "tags": ["style", "character", "ip-design", "nanobanana", "consistency"],
+  "systemPrompt": "你是 NanoBanana 艺术风格专家，精通角色设计、IP 开发、艺术风格匹配。根据用户输入的主题、角色类型、使用场景，自动匹配最适合的艺术流派、代表艺术家、色彩调性、视觉关键词，并特别强化角色风格适配和 IP 一致性建议。输出简洁、专业、可直接嵌入 NanoBanana 提示词的风格描述，包含角色设计要点和 IP 识别元素建议。",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "theme": {
+        "type": "string",
+        "description": "主题或使用场景",
+        "required": true
+      },
+      "characterType": {
+        "type": "string",
+        "description": "角色类型（如：二次元少女、商务人士、卡通吉祥物、奇幻角色等）",
+        "required": false
+      },
+      "ipGoal": {
+        "type": "string",
+        "description": "IP 目标（如：品牌代言、系列漫画、游戏角色、周边产品等）",
+        "required": false
+      },
+      "industry": {
+        "type": "string",
+        "description": "所属行业",
+        "required": false
+      }
+    }
+  },
+  "outputFormat": "structured-style-guide-with-character-notes",
+  "responseTemplate": "【艺术流派】{artMovements}\n【代表艺术家】{artists}\n【色彩调性】{colorTonality}\n【视觉关键词】{visualKeywords}\n【角色设计要点】{characterDesignNotes}\n【IP 识别元素】{ipElements}\n【推荐风格组合】{recommendedStyle}",
+  "characterStyleDatabase": {
+    "anime": {
+      "movements": ["Anime Art Style", "Cel Shading", "Moe Style", "Seinen", "Shoujo"],
+      "artists": ["Makoto Shinkai", "Hiroyuki Imaishi", "Yoshiyuki Sadamoto", "Akira Toriyama"],
+      "colors": ["Vibrant Pastels", "High Saturation", "Gradient Hair Colors", "Expressive Eye Colors"],
+      "characterNotes": "强调大眼睛、丰富表情、动态发型、标志性配饰"
+    },
+    "realistic": {
+      "movements": ["Photorealism", "Digital Realism", "Portrait Photography", "Cinematic Style"],
+      "artists": ["Greg Rutkowski", "Artgerm", "WLOP", "Guweiz"],
+      "colors": ["Natural Skin Tones", "Subtle Color Grading", "Cinematic Color Palette"],
+      "characterNotes": "注重真实比例、细腻皮肤质感、自然光影、微表情"
+    },
+    "cartoon": {
+      "movements": ["Cartoon Network Style", "Disney Style", "Pixar 3D", "Vector Art"],
+      "artists": ["Craig McCracken", "Pendleton Ward", "Disney Animators"],
+      "colors": ["Bold Primary Colors", "Simple Color Blocks", "High Contrast"],
+      "characterNotes": "简化造型、夸张特征、强识别度、适合周边开发"
+    },
+    "fantasy": {
+      "movements": ["Fantasy Art", "Concept Art", "Epic Fantasy", "Mythological Art"],
+      "artists": ["Frank Frazetta", "Boris Vallejo", "Alan Lee", "John Howe"],
+      "colors": ["Rich Jewel Tones", "Magical Glow Effects", "Atmospheric Colors"],
+      "characterNotes": "奇幻服饰、魔法元素、种族特征、武器道具设计"
+    }
+  },
+  "examples": [
+    {
+      "input": {
+        "theme": "咖啡店品牌 IP",
+        "characterType": "可爱卡通吉祥物",
+        "ipGoal": "品牌代言 + 周边产品",
+        "industry": "餐饮"
+      },
+      "output": "【艺术流派】Cartoon Network Style, Disney Style, Vector Art, Kawaii Culture, Pop Art\n【代表艺术家】Craig McCracken, Pendleton Ward, Disney Character Designers, Sanrio Designers\n【色彩调性】Warm Coffee Browns, Cream Whites, Accent Orange or Green, Soft Pastel Background\n【视觉关键词】Cute, Friendly, Approachable, Simple Shapes, Bold Outlines, Expressive Eyes, Memorable Silhouette\n【角色设计要点】简化造型便于识别和复制、夸张头部比例增加可爱度、设计标志性表情和姿势、加入咖啡相关元素（如咖啡豆帽子、拿铁拉花图案）、色彩不宜超过 5 种便于周边印刷\n【IP 识别元素】标志性配色方案、独特发型或头饰、代表性道具（咖啡杯/咖啡豆）、品牌 logo 融合设计、可识别剪影轮廓\n【推荐风格组合】Disney Cartoon Style + Warm Coffee Color Palette + Simple Vector Art + Kawaii Expression"
+    }
+  ],
+  "parameters": {
+    "temperature": 0.65,
+    "maxTokens": 500,
+    "topP": 0.88
+  },
+  "metadata": {
+    "createdAt": "2026-03-13",
+    "updatedAt": "2026-03-13",
+    "skillLevel": "professional",
+    "targetUsers": ["character-designers", "ip-creators", "brand-designers", "mascot-designers"]
+  }
+}

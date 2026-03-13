@@ -1,0 +1,95 @@
+{
+  "name": "nanobanana-series-generator",
+  "version": "1.0.0",
+  "description": "NanoBanana 系列海报批量生成器 - 专为 NanoBanana 优化，强制保持角色一致性、IP 稳定、多图统一",
+  "author": "Poster Design AI Team",
+  "license": "MIT",
+  "type": "batch-generator",
+  "platform": "nanobanana",
+  "category": "series-production",
+  "tags": ["series", "batch", "character-consistency", "ip-stability", "nanobanana"],
+  "systemPrompt": "你是 NanoBanana 系列海报策划专家兼角色稳定大师。根据用户输入的同一个主题和角色设定，一次生成 5 组不同风格但角色高度统一的系列海报提示词。每组必须强制保持：角色形象完全一致（发型、发色、眼睛、服装、配饰）、角色比例稳定、IP 识别元素统一，但在场景、构图、光影、艺术风格上有所变化。直接输出 5 个可用的完整 NanoBanana 提示词，编号清晰，每个提示词前必须包含完整的角色锁定关键词块。",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "theme": {
+        "type": "string",
+        "description": "系列海报统一主题",
+        "required": true
+      },
+      "characterDefinition": {
+        "type": "string",
+        "description": "完整角色定义（发型、发色、眼睛、服装、配饰、体型、身高等）",
+        "required": true
+      },
+      "colorBase": {
+        "type": "string",
+        "description": "统一的基础色彩基调",
+        "required": false
+      },
+      "ipElements": {
+        "type": "string",
+        "description": "必须保持的 IP 识别元素（如：logo、标志性道具、配色等）",
+        "required": false
+      },
+      "quantity": {
+        "type": "integer",
+        "description": "生成数量（默认 5 组）",
+        "required": false,
+        "default": 5
+      },
+      "aspectRatio": {
+        "type": "string",
+        "description": "画面比例",
+        "required": false,
+        "default": "2:3"
+      }
+    }
+  },
+  "outputFormat": "numbered-series-prompts-with-character-lock",
+  "responseTemplate": "【角色一致性锁定关键词】（每组必含）\n{characterLockBlock}\n\n【系列海报 1/5 - {style1}】\n{prompt1}\n\n【系列海报 2/5 - {style2}】\n{prompt2}\n\n【系列海报 3/5 - {style3}】\n{prompt3}\n\n【系列海报 4/5 - {style4}】\n{prompt4}\n\n【系列海报 5/5 - {style5}】\n{prompt5}\n\n【IP 统一性说明】{consistencyNotes}",
+  "characterLockBlockTemplate": "{characterDefinition}, character identity lock, consistent facial features, stable character design, consistent body proportions, unchanged costume design, consistent expression style, fixed character color palette, IP stable, character consistency lock",
+  "consistencyRules": [
+    "每组提示词开头必须包含完整的角色定义和锁定关键词",
+    "角色面部特征描述必须完全一致（发型、发色、眼睛形状和颜色）",
+    "服装和配饰必须保持不变（款式、颜色、图案、材质）",
+    "身体比例和体型描述必须统一",
+    "IP 识别元素必须在所有 5 组中出现",
+    "色彩基调保持统一，允许场景色 20-30% 变化",
+    "通过场景、构图、光影、风格制造差异化"
+  ],
+  "styleVariations": [
+    "日常场景风格 - 温馨自然，生活化场景",
+    "赛博朋克风格 - 霓虹光影，未来科技感",
+    "奇幻魔法风格 - 魔法元素，梦幻氛围",
+    "商务职业风格 - 专业正式，办公场景",
+    "运动活力风格 - 动态姿势，户外场景",
+    "复古怀旧风格 - 经典色调，怀旧元素",
+    "极简主义风格 - 减少元素，强调留白",
+    "节日庆典风格 - 热闹氛围，装饰元素"
+  ],
+  "examples": [
+    {
+      "input": {
+        "theme": "品牌 IP 形象宣传",
+        "characterDefinition": "银色短发齐耳波波头，蓝色清澈眼眸，穿着白色极简科技风连衣裙，佩戴透明全息眼镜，手持发光平板设备，身高 170cm，苗条体型，专业科技博主形象",
+        "colorBase": "白 + 银 + 科技蓝",
+        "ipElements": "全息眼镜、发光平板、科技风连衣裙",
+        "quantity": 5,
+        "aspectRatio": "2:3"
+      },
+      "output": "【角色一致性锁定关键词】（每组必含）\nSilver short bob haircut, blue clear eyes, wearing white minimalist tech dress, transparent holographic glasses, holding glowing tablet device, 170cm height, slim body type, professional tech blogger形象，character identity lock, consistent facial features, stable character design, consistent body proportions, unchanged costume design, consistent expression style, fixed character color palette, IP stable, character consistency lock\n\n【系列海报 1/5 - 日常科技场景】\nSilver short bob haircut, blue clear eyes, wearing white minimalist tech dress, transparent holographic glasses, holding glowing tablet device, 170cm height, slim body type, professional tech blogger 形象，character identity lock, consistent facial features, stable character design, consistent body proportions, unchanged costume design, consistent expression style, fixed character color palette, IP stable, character consistency lock, casual pose sitting on modern sofa, reviewing tech products on tablet, bright minimalist apartment background, natural daylight from large windows, white silver tech blue color scheme, clean interior design, lifestyle photography aesthetic, professional tech blogger visual --ar 2:3 --nb-v1\n\n【系列海报 2/5 - 赛博朋克风格】\nSilver short bob haircut, blue clear eyes, wearing white minimalist tech dress, transparent holographic glasses, holding glowing tablet device, 170cm height, slim body type, professional tech blogger 形象，character identity lock, consistent facial features, stable character design, consistent body proportions, unchanged costume design, consistent expression style, fixed character color palette, IP stable, character consistency lock, standing on futuristic rooftop at night, neon city skyline background, holographic UI screens floating around, volumetric fog, laser beams, cyberpunk atmosphere, neon blue and purple lighting, dynamic pose, urban tech visual --ar 2:3 --nb-v1\n\n【系列海报 3/5 - 发布会舞台风格】\nSilver short bob haircut, blue clear eyes, wearing white minimalist tech dress, transparent holographic glasses, holding glowing tablet device, 170cm height, slim body type, professional tech blogger 形象，character identity lock, consistent facial features, stable character design, consistent body proportions, unchanged costume design, consistent expression style, fixed character color palette, IP stable, character consistency lock, presenting on conference stage, spotlight from above, large screen background displaying product specs, audience silhouettes in foreground, professional stage lighting, confident hero pose, tech event atmosphere, corporate visual --ar 2:3 --nb-v1\n\n【系列海报 4/5 - 极简工作室风格】\nSilver short bob haircut, blue clear eyes, wearing white minimalist tech dress, transparent holographic glasses, holding glowing tablet device, 170cm height, slim body type, professional tech blogger 形象，character identity lock, consistent facial features, stable character design, consistent body proportions, unchanged costume design, consistent expression style, fixed character color palette, IP stable, character consistency lock, standing in minimalist white studio, clean geometric shadows, single plant as accent, soft diffused lighting, rule of thirds composition, lots of negative space, high-key photography, editorial magazine style, sophisticated aesthetic --ar 2:3 --nb-v1\n\n【系列海报 5/5 - 未来实验室风格】\nSilver short bob haircut, blue clear eyes, wearing white minimalist tech dress, transparent holographic glasses, holding glowing tablet device, 170cm height, slim body type, professional tech blogger 形象，character identity lock, consistent facial features, stable character design, consistent body proportions, unchanged costume design, consistent expression style, fixed character color palette, IP stable, character consistency lock, working in futuristic laboratory, holographic displays and floating data visualizations, cool blue ambient lighting, scientific equipment in background, analytical pose interacting with interfaces, sci-fi research atmosphere, high-tech visual --ar 2:3 --nb-v1\n\n【IP 统一性说明】所有 5 组海报强制保持：银色短发波波头、蓝色眼眸、白色科技风连衣裙、全息眼镜、发光平板设备、170cm 苗条体型、专业科技博主形象。通过角色锁定关键词确保 NanoBanana 生成时角色不崩坏、IP 高度统一。5 组分别展示不同场景和风格，适合品牌全渠道宣传、社交媒体矩阵、多场景投放。"
+    }
+  ],
+  "parameters": {
+    "temperature": 0.75,
+    "maxTokens": 1500,
+    "topP": 0.92
+  },
+  "metadata": {
+    "createdAt": "2026-03-13",
+    "updatedAt": "2026-03-13",
+    "skillLevel": "professional",
+    "targetUsers": ["ip-creators", "brand-managers", "character-designers", "marketing-teams"]
+  }
+}

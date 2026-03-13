@@ -1,0 +1,47 @@
+{
+  "name": "poster-design-ai-skills",
+  "version": "1.0.0",
+  "description": "海报设计 AI 技能工具包 - Midjourney + NanoBanana 双平台专业策展系统",
+  "main": "index.js",
+  "scripts": {
+    "install:skills": "node scripts/install-skills.js",
+    "validate": "node scripts/validate-skills.js",
+    "test": "node scripts/test-skills.js",
+    "build": "echo 'Skills are ready for distribution'",
+    "publish:github": "bash scripts/publish-to-github.sh"
+  },
+  "keywords": [
+    "mcp",
+    "claude",
+    "poster",
+    "midjourney",
+    "nanobanana",
+    "ai-art",
+    "design",
+    "curator",
+    "prompt-engineering"
+  ],
+  "author": "Poster Design AI Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/poster-design-ai-skills.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-username/poster-design-ai-skills/issues"
+  },
+  "homepage": "https://github.com/your-username/poster-design-ai-skills#readme",
+  "files": [
+    "skills/",
+    "scripts/",
+    "docs/",
+    "mcp.json",
+    "README.md",
+    "INSTALL.md",
+    "USAGE.md"
+  ],
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  }
+}
