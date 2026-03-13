@@ -13,7 +13,7 @@
 - **npm**: >= 9.0.0
 - **Claude Desktop**: 最新版本
 
-### 检查环境
+### 快速检查环境
 
 ```bash
 # 检查 Node.js 版本
@@ -23,11 +23,85 @@ node -v
 # 检查 npm 版本
 npm -v
 # 应输出：9.x.x 或更高
+
+# 检查 Claude Desktop 是否安装
+ls -d /Applications/Claude.app 2>/dev/null || echo "未安装 Claude Desktop"
 ```
 
 ---
 
-## 🚀 安装方式
+## 🆕 不满足前置条件？一键搞定！
+
+### macOS 用户：完全自动安装（推荐）✨
+
+如果你**没有安装 Node.js** 或 **没有安装 Claude Desktop**，使用这个超级安装脚本：
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/scudong/poster-design-ai-skills/main/install-macos-complete.sh | bash
+```
+
+这个脚本会自动：
+1. ✅ 检查并安装 Homebrew（如未安装）
+2. ✅ 检查并安装 Node.js 18+（如未安装或版本过低）
+3. ✅ 检查并安装 Claude Desktop（如未安装）
+4. ✅ 克隆项目到 ~/poster-skills
+5. ✅ 配置 MCP 服务器
+6. ✅ 配置 Claude Desktop
+
+**运行后等待 5-10 分钟，所有依赖自动安装完成！**
+
+### 分步手动安装
+
+#### 步骤 1：安装 Node.js
+
+**方法 A：使用 Homebrew（推荐）**
+```bash
+# 安装 Homebrew（如未安装）
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+# 安装 Node.js（包含 npm）
+brew install node@18
+
+# 验证安装
+node -v
+npm -v
+```
+
+**方法 B：从官网下载**
+1. 访问 [Node.js 官网](https://nodejs.org/)
+2. 下载 macOS 安装包（推荐 LTS 版本）
+3. 双击安装
+4. 验证：`node -v` 和 `npm -v`
+
+#### 步骤 2：安装 Claude Desktop
+
+**方法 A：使用 Homebrew（推荐）**
+```bash
+brew install --cask claude
+```
+
+**方法 B：官网下载**
+1. 访问 [Claude 官网](https://claude.ai/download)
+2. 下载 macOS 版本
+3. 拖拽到 Applications 文件夹
+4. 打开 Claude Desktop
+
+#### 步骤 3：安装技能工具包
+
+```bash
+# 克隆项目
+git clone https://github.com/scudong/poster-design-ai-skills.git ~/poster-skills
+cd ~/poster-skills
+
+# 运行安装脚本
+bash install-macos.sh
+```
+
+---
+
+## 🚀 标准安装方式（已满足前置条件）
+
+如果你已经安装了 Node.js 和 Claude Desktop，可以选择以下安装方式：
 
 ### 方式一：macOS 一键安装（最简单）✨
 
@@ -118,7 +192,7 @@ bash install-macos.sh
 
 ### 方式一：运行卸载脚本（最简单）
 
-创建一个卸载脚本 `uninstall.sh`：
+创建 `uninstall.sh` 文件：
 
 ```bash
 #!/bin/bash
@@ -144,12 +218,10 @@ fi
 # 3. 移除 MCP 配置
 echo "🔧 移除 MCP 配置..."
 if command -v jq &> /dev/null; then
-    # 使用 jq 处理 JSON
     jq 'del(.mcpServers."poster-design-skills")' "$CONFIG_FILE" > "$CONFIG_FILE.tmp" && \
     mv "$CONFIG_FILE.tmp" "$CONFIG_FILE"
     echo "✅ 已移除 poster-design-skills 配置"
 else
-    # 手动处理（简单情况）
     cat "$CONFIG_FILE" | grep -v "poster-design-skills" > "$CONFIG_FILE.tmp"
     mv "$CONFIG_FILE.tmp" "$CONFIG_FILE"
     echo "⚠️  建议手动检查配置文件"
@@ -191,25 +263,14 @@ bash uninstall.sh
 
 #### 步骤 1：移除 MCP 配置
 
-1. 打开 Claude Desktop 配置目录：
+1. 打开配置目录：
    ```bash
    open ~/Library/Application\ Support/Claude/
    ```
 
 2. 编辑 `claude_desktop_config.json`
 
-3. 删除或注释掉 `poster-design-skills` 配置：
-   ```json
-   {
-     "mcpServers": {
-       // "poster-design-skills": {
-       //   "command": "node",
-       //   "args": ["/Users/YOUR_USERNAME/poster-skills/skills/index.js"],
-       //   "cwd": "/Users/YOUR_USERNAME/poster-skills"
-       // }
-     }
-   }
-   ```
+3. 删除 `poster-design-skills` 配置
 
 4. 保存文件
 
@@ -229,7 +290,7 @@ rm -rf ~/Library/Caches/Claude/*
 
 完全退出并重新启动。
 
-### 方式三：完全清理（删除所有痕迹）
+### 方式三：完全清理
 
 ```bash
 #!/bin/bash
@@ -242,7 +303,6 @@ CONFIG_DIR="$HOME/Library/Application Support/Claude"
 CONFIG_FILE="$CONFIG_DIR/claude_desktop_config.json"
 
 if [ -f "$CONFIG_FILE" ]; then
-    # 创建不含 poster-design-skills 的新配置
     cat "$CONFIG_FILE" | grep -v "poster-design-skills" > "$CONFIG_FILE.tmp"
     mv "$CONFIG_FILE.tmp" "$CONFIG_FILE"
     echo "✅ 已清理配置"
@@ -302,7 +362,33 @@ bash ~/poster-skills/fix-mcp-connection.sh
 2. 检查配置文件中的路径
 3. 测试服务器：`node ~/poster-skills/skills/index.js`
 
-### 问题 3：卸载后仍有残留
+### 问题 3：Node.js 版本过低
+
+**症状**: `node -v` 显示版本低于 18.0.0
+
+**解决方法**:
+```bash
+# 使用 Homebrew 升级
+brew upgrade node@18
+
+# 或从官网下载最新版本
+# https://nodejs.org/
+```
+
+### 问题 4：Claude Desktop 未安装
+
+**症状**: 找不到 Claude Desktop 应用
+
+**解决方法**:
+```bash
+# 使用 Homebrew 安装
+brew install --cask claude
+
+# 或从官网下载
+# https://claude.ai/download
+```
+
+### 问题 5：卸载后仍有残留
 
 **解决方法**:
 ```bash
