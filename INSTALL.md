@@ -29,33 +29,40 @@ npm -v
 
 ---
 
-## 🚀 安装方式一：一键安装（推荐）
+## 🚀 安装方式一：通过 GitHub URL 安装（最简单）✨
 
-### 步骤 1：克隆项目
+这是**最简单**的安装方式，只需一条命令！
 
-```bash
-git clone https://github.com/your-username/poster-design-ai-skills.git
-cd poster-design-ai-skills
-```
+### 步骤 1：确保已安装 Claude Desktop
 
-### 步骤 2：运行一键安装脚本
+下载并安装最新版本的 Claude Desktop：
+- macOS: https://claude.ai/download
+- Windows: https://claude.ai/download
 
-```bash
-npm install
-npm run install:skills
-```
-
-### 步骤 3：验证安装
+### 步骤 2：运行安装命令
 
 ```bash
-npm run validate
+claude mcp install https://github.com/scudong/poster-design-ai-skills
 ```
 
-如输出 "All skills validated successfully"，则安装成功。
+### 步骤 3：重启 Claude Desktop
+
+完全退出 Claude Desktop 并重新启动。
+
+### 步骤 4：验证安装
+
+在 Claude Desktop 中输入：
+```
+列出可用的海报设计技能
+```
+
+如能看到 8 个技能，则安装成功。
+
+**完成！** 🎉
 
 ---
 
-## 🛠️ 安装方式二：手动安装到 Claude Desktop
+## 🛠️ 安装方式二：克隆项目安装
 
 ### 步骤 1：找到 Claude Desktop 配置目录
 

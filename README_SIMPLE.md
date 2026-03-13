@@ -2,18 +2,21 @@
 
 ## 🚀 超简单安装方法
 
-### 方法一：直接拖拽（推荐）
+### 方法一：通过 GitHub URL 安装（最简单）✨
+
+只需一条命令：
+
+```bash
+claude mcp install https://github.com/scudong/poster-design-ai-skills
+```
+
+**完成！** 重启 Claude Desktop 即可使用。
+
+### 方法二：直接拖拽
 
 1. **打开 Claude Desktop**
 2. **将 `poster-skills-bundle.json` 文件拖拽到 Claude 窗口**
 3. **完成！立即可以使用**
-
-### 方法二：复制粘贴
-
-1. 打开 `poster-skills-bundle.json` 文件
-2. 全选（Ctrl/Cmd + A）并复制（Ctrl/Cmd + C）
-3. 粘贴到 Claude Desktop 窗口
-4. 完成！
 
 ---
 
