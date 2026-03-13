@@ -26,6 +26,27 @@ curl -fsSL https://raw.githubusercontent.com/scudong/poster-design-ai-skills/mai
 
 ---
 
+## 🗑️ 一键卸载（推荐）✨
+
+### macOS 用户：完全卸载
+
+只需一条命令，完全卸载且可选择是否清理所有痕迹：
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/scudong/poster-design-ai-skills/main/uninstall-macos.sh | bash
+```
+
+**脚本会自动完成：**
+1. ✅ 备份现有配置
+2. ✅ 移除 MCP 服务器配置
+3. ✅ 删除项目文件
+4. ✅ 清理相关缓存
+5. ✅ 可选：完全清理所有痕迹
+
+**运行后根据提示操作即可！**
+
+---
+
 ## 📋 前置要求
 
 ### 系统要求
@@ -97,97 +118,9 @@ bash install-macos.sh
 
 ---
 
-## ✅ 验证安装
+## 🗑️ 手动卸载（可选）
 
-### 方法 1：在 Claude Desktop 中测试
-
-打开 Claude Desktop，输入：
-```
-列出可用的海报设计技能
-```
-
-如能看到 8 个技能，则安装成功。
-
-### 方法 2：测试技能
-
-```
-使用 Midjourney 主海报生成技能，生成一个未来科技峰会海报提示词
-```
-
----
-
-## 🗑️ 卸载方式
-
-### 方式一：运行卸载脚本（最简单）
-
-创建 `uninstall.sh` 文件：
-
-```bash
-#!/bin/bash
-
-echo "🗑️  开始卸载海报设计 AI 技能工具包..."
-echo ""
-
-# 1. 找到 Claude Desktop 配置目录
-CONFIG_DIR="$HOME/Library/Application Support/Claude"
-CONFIG_FILE="$CONFIG_DIR/claude_desktop_config.json"
-
-echo "📁 配置目录：$CONFIG_DIR"
-echo ""
-
-# 2. 备份配置
-if [ -f "$CONFIG_FILE" ]; then
-    echo "📋 备份配置文件..."
-    cp "$CONFIG_FILE" "$CONFIG_FILE.backup.$(date +%Y%m%d%H%M%S)"
-    echo "✅ 备份完成"
-    echo ""
-fi
-
-# 3. 移除 MCP 配置
-echo "🔧 移除 MCP 配置..."
-if command -v jq &> /dev/null; then
-    jq 'del(.mcpServers."poster-design-skills")' "$CONFIG_FILE" > "$CONFIG_FILE.tmp" && \
-    mv "$CONFIG_FILE.tmp" "$CONFIG_FILE"
-    echo "✅ 已移除 poster-design-skills 配置"
-else
-    cat "$CONFIG_FILE" | grep -v "poster-design-skills" > "$CONFIG_FILE.tmp"
-    mv "$CONFIG_FILE.tmp" "$CONFIG_FILE"
-    echo "⚠️  建议手动检查配置文件"
-fi
-echo ""
-
-# 4. 删除项目文件
-echo "🗑️  删除项目文件..."
-if [ -d "$HOME/poster-skills" ]; then
-    rm -rf "$HOME/poster-skills"
-    echo "✅ 已删除 ~/poster-skills"
-else
-    echo "ℹ️  ~/poster-skills 不存在"
-fi
-echo ""
-
-# 5. 清理缓存
-echo "🧹 清理缓存..."
-CACHE_DIR="$HOME/Library/Caches/Claude"
-if [ -d "$CACHE_DIR" ]; then
-    rm -rf "$CACHE_DIR"/*
-    echo "✅ 已清理缓存"
-fi
-echo ""
-
-# 6. 完成
-echo "✅ 卸载完成！"
-echo ""
-echo "📝 请重启 Claude Desktop 以应用更改"
-echo "📋 配置备份已保存：$CONFIG_FILE.backup.*"
-```
-
-保存后运行：
-```bash
-bash uninstall.sh
-```
-
-### 方式二：手动卸载
+### 方式一：手动卸载
 
 #### 步骤 1：移除 MCP 配置
 
@@ -218,7 +151,7 @@ rm -rf ~/Library/Caches/Claude/*
 
 完全退出并重新启动。
 
-### 方式三：完全清理
+### 方式二：完全清理
 
 ```bash
 #!/bin/bash
@@ -259,6 +192,25 @@ fi
 echo ""
 echo "✅ 完全清理完成！"
 echo "📝 请重启 Claude Desktop"
+```
+
+---
+
+## ✅ 验证安装
+
+### 方法 1：在 Claude Desktop 中测试
+
+打开 Claude Desktop，输入：
+```
+列出可用的海报设计技能
+```
+
+如能看到 8 个技能，则安装成功。
+
+### 方法 2：测试技能
+
+```
+使用 Midjourney 主海报生成技能，生成一个未来科技峰会海报提示词
 ```
 
 ---
@@ -341,6 +293,6 @@ open ~/Library/Application\ Support/Claude/
 
 <div align="center">
 
-**安装简单，卸载更简单！** 🚀
+**一键安装，一键卸载，就是这么简单！** 🚀
 
 </div>
