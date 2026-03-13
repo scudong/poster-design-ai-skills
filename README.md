@@ -51,6 +51,14 @@ curl -fsSL https://raw.githubusercontent.com/scudong/poster-design-ai-skills/mai
 
 安装脚本会自动检测并安装所有依赖（Homebrew、Node.js、Claude Desktop），重启 Claude Desktop 即可使用。
 
+### macOS 一键卸载
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/scudong/poster-design-ai-skills/main/uninstall-macos.sh | bash
+```
+
+完全卸载，可选择清理所有痕迹。
+
 ### 手动安装
 
 ```bash
