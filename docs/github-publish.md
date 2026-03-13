@@ -281,9 +281,9 @@ mcp claude poster-design midjourney nanobanana ai-art prompt-engineering design-
 在 README.md 中添加徽章：
 
 ```markdown
-![Version](https://img.shields.io/github/v/release/your-username/poster-design-ai-skills)
-![License](https://img.shields.io/github/license/your-username/poster-design-ai-skills)
-![Stars](https://img.shields.io/github/stars/your-username/poster-design-ai-skills)
+![Version](https://img.shields.io/github/v/release/scudong/poster-design-ai-skills)
+![License](https://img.shields.io/github/license/scudong/poster-design-ai-skills)
+![Stars](https://img.shields.io/github/stars/scudong/poster-design-ai-skills)
 ```
 
 ---
@@ -300,7 +300,7 @@ mcp claude poster-design midjourney nanobanana ai-art prompt-engineering design-
 git remote -v
 
 # 如不正确，更新为正确的 URL
-git remote set-url origin https://github.com/your-username/poster-design-ai-skills.git
+git remote set-url origin https://github.com/scudong/poster-design-ai-skills.git
 ```
 
 ### 问题 2：标签已存在
@@ -368,7 +368,7 @@ git push -u origin main
 
 1. 查看 [INSTALL.md](INSTALL.md)
 2. 查看 [USAGE.md](USAGE.md)
-3. 提交 [GitHub Issue](https://github.com/your-username/poster-design-ai-skills/issues)
+3. 提交 [GitHub Issue](https://github.com/scudong/poster-design-ai-skills/issues)
 
 ---
 
