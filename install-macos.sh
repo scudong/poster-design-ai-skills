@@ -1,108 +1,213 @@
 #!/bin/bash
 
-# 海报设计 AI 技能工具包 - macOS 一键安装脚本
-# 使用方法：bash install-macos.sh
-
 set -e
 
-echo "🎨 海报设计 AI 技能工具包 - macOS 一键安装"
-echo "==========================================="
-echo ""
+# 颜色定义
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+NC='\033[0m' # No Color
 
-# 步骤 1：克隆仓库
-echo "📦 步骤 1/4：克隆仓库..."
-if [ -d ~/poster-skills ]; then
-    echo "⚠️  目录 ~/poster-skills 已存在，跳过克隆"
-else
-    git clone https://github.com/scudong/poster-design-ai-skills.git ~/poster-skills
-    echo "✅ 克隆完成"
-fi
-echo ""
+# 打印带颜色的消息
+print_info() {
+    echo -e "${BLUE}ℹ️  $1${NC}"
+}
 
-# 步骤 2：进入目录
-echo "📂 步骤 2/4：进入项目目录..."
-cd ~/poster-skills
-echo "✅ 当前目录：$(pwd)"
-echo ""
+print_success() {
+    echo -e "${GREEN}✅ $1${NC}"
+}
 
-# 步骤 3：检查依赖（可选）
-echo "📋 步骤 3/4：检查 Node.js..."
-if command -v node &> /dev/null; then
-    NODE_VERSION=$(node -v)
-    echo "✅ Node.js 已安装：$NODE_VERSION"
-else
-    echo "⚠️  Node.js 未安装，请前往 https://nodejs.org/ 下载安装"
-    echo "   或者使用 Homebrew 安装：brew install node"
-fi
-echo ""
+print_warning() {
+    echo -e "${YELLOW}⚠️  $1${NC}"
+}
 
-# 步骤 4：配置 Claude Desktop
-echo "⚙️  步骤 4/4：配置 Claude Desktop..."
-echo ""
+print_error() {
+    echo -e "${RED}❌ $1${NC}"
+}
 
-# 找到 Claude Desktop 配置目录
-CONFIG_DIR="$HOME/Library/Application Support/Claude"
-CONFIG_FILE="$CONFIG_DIR/claude_desktop_config.json"
+# 检查是否安装了 Homebrew
+check_homebrew() {
+    if command -v brew &> /dev/null; then
+        print_success "Homebrew 已安装"
+        return 0
+    else
+        print_warning "Homebrew 未安装"
+        return 1
+    fi
+}
 
-# 创建配置目录（如果不存在）
-mkdir -p "$CONFIG_DIR"
+# 安装 Homebrew
+install_homebrew() {
+    print_info "正在安装 Homebrew..."
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    print_success "Homebrew 安装完成"
+}
 
-# 获取当前用户名
-USERNAME=$(whoami)
-SKILLS_PATH="/Users/$USERNAME/poster-skills/skills/index.js"
+# 检查 Node.js
+check_nodejs() {
+    if command -v node &> /dev/null; then
+        NODE_VERSION=$(node -v | cut -d'.' -f1 | sed 's/v//')
+        if [ "$NODE_VERSION" -ge 18 ]; then
+            print_success "Node.js 版本符合要求：$(node -v)"
+            return 0
+        else
+            print_warning "Node.js 版本过低：$(node -v)，需要 >= 18.0.0"
+            return 1
+        fi
+    else
+        print_warning "Node.js 未安装"
+        return 1
+    fi
+}
 
-echo "📝 配置文件路径：$CONFIG_FILE"
-echo "📍 技能路径：$SKILLS_PATH"
-echo ""
+# 安装 Node.js
+install_nodejs() {
+    print_info "正在安装 Node.js 18..."
+    brew install node@18
+    print_success "Node.js 安装完成：$(node -v)"
+}
 
-# 备份现有配置
-if [ -f "$CONFIG_FILE" ]; then
-    echo "⚠️  发现现有配置文件，创建备份..."
-    cp "$CONFIG_FILE" "$CONFIG_FILE.backup.$(date +%Y%m%d%H%M%S)"
-    echo "✅ 备份完成：$CONFIG_FILE.backup.*"
-    echo ""
-fi
+# 升级 Node.js
+upgrade_nodejs() {
+    print_info "正在升级 Node.js..."
+    brew upgrade node@18
+    print_success "Node.js 升级完成：$(node -v)"
+}
 
-# 创建新配置
-echo "🔧 创建 MCP 配置..."
-cat > "$CONFIG_FILE" << EOF
+# 检查 Claude Desktop
+check_claude() {
+    if [ -d "/Applications/Claude.app" ]; then
+        print_success "Claude Desktop 已安装"
+        return 0
+    else
+        print_warning "Claude Desktop 未安装"
+        return 1
+    fi
+}
+
+# 安装 Claude Desktop
+install_claude() {
+    print_info "正在安装 Claude Desktop..."
+    brew install --cask claude
+    print_success "Claude Desktop 安装完成"
+}
+
+# 克隆项目
+clone_project() {
+    print_info "正在克隆项目..."
+    if [ -d "$HOME/poster-skills" ]; then
+        print_warning "~/poster-skills 已存在，正在更新..."
+        cd ~/poster-skills
+        git pull
+    else
+        git clone https://github.com/scudong/poster-design-ai-skills.git ~/poster-skills
+    fi
+    print_success "项目克隆完成"
+}
+
+# 配置 MCP 服务器
+configure_mcp() {
+    print_info "正在配置 MCP 服务器..."
+    
+    CONFIG_DIR="$HOME/Library/Application Support/Claude"
+    CONFIG_FILE="$CONFIG_DIR/claude_desktop_config.json"
+    
+    # 创建配置目录
+    mkdir -p "$CONFIG_DIR"
+    
+    # 备份现有配置
+    if [ -f "$CONFIG_FILE" ]; then
+        cp "$CONFIG_FILE" "$CONFIG_FILE.backup.$(date +%Y%m%d%H%M%S)"
+        print_info "已备份现有配置"
+    fi
+    
+    # 创建新配置
+    cat > "$CONFIG_FILE" << EOF
 {
   "mcpServers": {
-    "poster-skills": {
+    "poster-design-skills": {
       "command": "node",
-      "args": ["$SKILLS_PATH"],
-      "cwd": "/Users/$USERNAME/poster-skills",
+      "args": ["$HOME/poster-skills/skills/index.js"],
+      "cwd": "$HOME/poster-skills",
       "env": {}
     }
   }
 }
 EOF
+    
+    print_success "MCP 服务器配置完成"
+}
 
-echo "✅ 配置完成"
-echo ""
+# 主流程
+main() {
+    echo ""
+    echo "======================================"
+    echo "  海报设计 AI 技能工具包 - 完整安装"
+    echo "======================================"
+    echo ""
+    
+    # 步骤 1：检查/安装 Homebrew
+    echo "步骤 1/6：检查 Homebrew..."
+    if ! check_homebrew; then
+        install_homebrew
+    fi
+    echo ""
+    
+    # 步骤 2：检查/安装 Node.js
+    echo "步骤 2/6：检查 Node.js..."
+    if ! check_nodejs; then
+        if command -v node &> /dev/null; then
+            upgrade_nodejs
+        else
+            install_nodejs
+        fi
+    fi
+    echo ""
+    
+    # 步骤 3：检查/安装 Claude Desktop
+    echo "步骤 3/6：检查 Claude Desktop..."
+    if ! check_claude; then
+        install_claude
+    fi
+    echo ""
+    
+    # 步骤 4：克隆项目
+    echo "步骤 4/6：克隆项目..."
+    clone_project
+    echo ""
+    
+    # 步骤 5：配置 MCP
+    echo "步骤 5/6：配置 MCP 服务器..."
+    configure_mcp
+    echo ""
+    
+    # 步骤 6：完成
+    echo "步骤 6/6：完成！"
+    echo ""
+    print_success "所有组件安装完成！"
+    echo ""
+    echo "======================================"
+    echo "  安装总结"
+    echo "======================================"
+    echo ""
+    echo "✅ Homebrew: $(brew --version | head -n1)"
+    echo "✅ Node.js: $(node -v)"
+    echo "✅ npm: $(npm -v)"
+    echo "✅ Claude Desktop: 已安装"
+    echo "✅ 项目位置：~/poster-skills"
+    echo ""
+    echo "======================================"
+    echo "  下一步操作"
+    echo "======================================"
+    echo ""
+    echo "1. 完全退出 Claude Desktop（菜单栏 → Quit）"
+    echo "2. 重新打开 Claude Desktop"
+    echo "3. 输入测试命令：列出可用的海报设计技能"
+    echo ""
+    print_success "安装完成！"
+    echo ""
+}
 
-# 显示配置内容
-echo "📋 配置内容："
-echo "-------------"
-cat "$CONFIG_FILE"
-echo "-------------"
-echo ""
-
-# 完成
-echo "🎉 安装完成！"
-echo ""
-echo "下一步操作："
-echo "  1. 完全退出 Claude Desktop（菜单栏 → Quit）"
-echo "  2. 重新打开 Claude Desktop"
-echo "  3. 左下角出现 🔨 锤子图标 = 安装成功 ✅"
-echo ""
-echo "使用方法："
-echo "  在 Claude Desktop 中输入："
-echo "  - 使用 Midjourney 主海报生成技能，生成一个科技峰会海报"
-echo "  - 使用 NanoBanana 系列海报批量，生成虚拟主播 IP 宣传系列"
-echo ""
-echo "📚 文档："
-echo "  - 安装教程：~/poster-skills/INSTALL.md"
-echo "  - 使用文档：~/poster-skills/USAGE.md"
-echo "  - GitHub: https://github.com/scudong/poster-design-ai-skills"
-echo ""
+# 运行主流程
+main

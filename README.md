@@ -40,17 +40,16 @@
 
 ### 前置要求
 
-- Node.js >= 18.0.0
-- npm >= 9.0.0
-- Claude Desktop 或支持 MCP 的客户端
+- macOS 10.15+
+- 其他依赖（Node.js、Claude Desktop 等）安装脚本会自动安装
 
 ### macOS 一键安装（最简单）✨
 
 ```bash
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/scudong/poster-design-ai-skills/main/install-macos.sh)"
+curl -fsSL https://raw.githubusercontent.com/scudong/poster-design-ai-skills/main/install-macos.sh | bash
 ```
 
-安装脚本会自动完成所有配置，重启 Claude Desktop 即可使用。
+安装脚本会自动检测并安装所有依赖（Homebrew、Node.js、Claude Desktop），重启 Claude Desktop 即可使用。
 
 ### 手动安装
 
