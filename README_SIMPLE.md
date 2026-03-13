@@ -2,12 +2,12 @@
 
 ## 🚀 超简单安装方法
 
-### 方法一：通过 GitHub URL 安装（最简单）✨
+### 方法一：macOS 一键安装（最简单）✨
 
 只需一条命令：
 
 ```bash
-claude mcp install https://github.com/scudong/poster-design-ai-skills
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/scudong/poster-design-ai-skills/main/install-macos.sh)"
 ```
 
 **完成！** 重启 Claude Desktop 即可使用。

@@ -44,26 +44,23 @@
 - npm >= 9.0.0
 - Claude Desktop 或支持 MCP 的客户端
 
-### 方式一：通过 GitHub URL 安装（最简单）✨
+### macOS 一键安装（最简单）✨
 
 ```bash
-claude mcp install https://github.com/scudong/poster-design-ai-skills
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/scudong/poster-design-ai-skills/main/install-macos.sh)"
 ```
 
-**完成！** 这是最简单的方式，无需手动配置。
+安装脚本会自动完成所有配置，重启 Claude Desktop 即可使用。
 
-### 方式二：克隆项目安装
+### 手动安装
 
 ```bash
 # 克隆项目
-git clone https://github.com/scudong/poster-design-ai-skills.git
-cd poster-design-ai-skills
+git clone https://github.com/scudong/poster-design-ai-skills.git ~/poster-skills
+cd ~/poster-skills
 
-# 安装技能
-npm run install:skills
-
-# 验证安装
-npm run validate
+# 运行安装脚本
+bash install-macos.sh
 ```
 
 详细安装步骤请查看 [安装教程](INSTALL.md)

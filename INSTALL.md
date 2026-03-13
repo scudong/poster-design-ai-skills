@@ -66,7 +66,7 @@ bash install-macos.sh
 
 ---
 
-## 🛠️ 安装方式二：通过 GitHub URL 安装
+## 🛠️ 安装方式二：手动配置 Claude Desktop
 
 ### 步骤 1：找到 Claude Desktop 配置目录
 
