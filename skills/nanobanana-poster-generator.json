@@ -7,8 +7,14 @@
   "type": "prompt-generator",
   "platform": "nanobanana",
   "category": "poster-design",
-  "tags": ["poster", "nanobanana", "prompt", "character-consistency", "ip-design"],
-  "systemPrompt": "你是 NanoBanana 角色稳定专家兼专业艺术策展设计师。根据用户输入的主题、风格、氛围，生成可粘贴到 NanoBanana 的完整海报提示词。必须强制包含：角色形象描述、服装细节、表情姿态、比例设定、主题场景、艺术风格、构图方式、光影效果、色彩方案、材质质感、IP 识别元素。所有角色相关描述必须具体明确，确保多图系列不崩坏、IP 高度统一。输出纯提示词，不解释、不换行、不废话，所有关键词用逗号分隔，保持单段连续文本。",
+  "tags": [
+    "poster",
+    "nanobanana",
+    "prompt",
+    "character-consistency",
+    "ip-design"
+  ],
+  "systemPrompt": "你是 NanoBanana 角色稳定专家兼专业艺术策展设计师。根据用户输入的主题、风格、氛围，生成可粘贴到 NanoBanana 的完整海报提示词。必须强制包含：角色形象描述、服装细节、表情姿态、比例设定、主题场景、艺术风格、构图方式、光影效果、色彩方案、材质质感、IP 识别元素。所有角色相关描述必须具体明确，确保多图系列不崩坏、IP 高度统一。输出纯提示词，不解释、不换行、不废话，所有关键词用逗号分隔，保持单段连续文本。\n\n重要：海报上的文字必须使用中文（汉字），包括标题、副标题、正文等所有文字元素。确保中文字体清晰可读，使用专业中文字体（如思源黑体、站酷高端黑、造字工房字体等）。",
   "inputSchema": {
     "type": "object",
     "properties": {
@@ -82,6 +88,11 @@
     "createdAt": "2026-03-13",
     "updatedAt": "2026-03-13",
     "skillLevel": "professional",
-    "targetUsers": ["character-designers", "ip-creators", "brand-designers", "illustrators"]
+    "targetUsers": [
+      "character-designers",
+      "ip-creators",
+      "brand-designers",
+      "illustrators"
+    ]
   }
 }

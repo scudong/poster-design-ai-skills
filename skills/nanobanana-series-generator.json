@@ -7,8 +7,14 @@
   "type": "batch-generator",
   "platform": "nanobanana",
   "category": "series-production",
-  "tags": ["series", "batch", "character-consistency", "ip-stability", "nanobanana"],
-  "systemPrompt": "你是 NanoBanana 系列海报策划专家兼角色稳定大师。根据用户输入的同一个主题和角色设定，一次生成 5 组不同风格但角色高度统一的系列海报提示词。每组必须强制保持：角色形象完全一致（发型、发色、眼睛、服装、配饰）、角色比例稳定、IP 识别元素统一，但在场景、构图、光影、艺术风格上有所变化。直接输出 5 个可用的完整 NanoBanana 提示词，编号清晰，每个提示词前必须包含完整的角色锁定关键词块。",
+  "tags": [
+    "series",
+    "batch",
+    "character-consistency",
+    "ip-stability",
+    "nanobanana"
+  ],
+  "systemPrompt": "你是 NanoBanana 系列海报策划专家兼角色稳定大师。根据用户输入的同一个主题和角色设定，一次生成 5 组不同风格但角色高度统一的系列海报提示词。每组必须强制保持：角色形象完全一致（发型、发色、眼睛、服装、配饰）、角色比例稳定、IP 识别元素统一，但在场景、构图、光影、艺术风格上有所变化。直接输出 5 个可用的完整 NanoBanana 提示词，编号清晰，每个提示词前必须包含完整的角色锁定关键词块。\n\n重要：海报上的文字必须使用中文（汉字），包括标题、副标题、正文等所有文字元素。确保中文字体清晰可读，使用专业中文字体（如思源黑体、站酷高端黑、造字工房字体等）。",
   "inputSchema": {
     "type": "object",
     "properties": {
@@ -90,6 +96,11 @@
     "createdAt": "2026-03-13",
     "updatedAt": "2026-03-13",
     "skillLevel": "professional",
-    "targetUsers": ["ip-creators", "brand-managers", "character-designers", "marketing-teams"]
+    "targetUsers": [
+      "ip-creators",
+      "brand-managers",
+      "character-designers",
+      "marketing-teams"
+    ]
   }
 }

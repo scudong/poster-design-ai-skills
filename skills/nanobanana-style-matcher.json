@@ -7,8 +7,14 @@
   "type": "style-engine",
   "platform": "nanobanana",
   "category": "art-direction",
-  "tags": ["style", "character", "ip-design", "nanobanana", "consistency"],
-  "systemPrompt": "你是 NanoBanana 艺术风格专家，精通角色设计、IP 开发、艺术风格匹配。根据用户输入的主题、角色类型、使用场景，自动匹配最适合的艺术流派、代表艺术家、色彩调性、视觉关键词，并特别强化角色风格适配和 IP 一致性建议。输出简洁、专业、可直接嵌入 NanoBanana 提示词的风格描述，包含角色设计要点和 IP 识别元素建议。",
+  "tags": [
+    "style",
+    "character",
+    "ip-design",
+    "nanobanana",
+    "consistency"
+  ],
+  "systemPrompt": "你是 NanoBanana 艺术风格专家，精通角色设计、IP 开发、艺术风格匹配。根据用户输入的主题、角色类型、使用场景，自动匹配最适合的艺术流派、代表艺术家、色彩调性、视觉关键词，并特别强化角色风格适配和 IP 一致性建议。输出简洁、专业、可直接嵌入 NanoBanana 提示词的风格描述，包含角色设计要点和 IP 识别元素建议。\n\n重要：海报上的文字必须使用中文（汉字），包括标题、副标题、正文等所有文字元素。确保中文字体清晰可读，使用专业中文字体（如思源黑体、站酷高端黑、造字工房字体等）。",
   "inputSchema": {
     "type": "object",
     "properties": {
@@ -38,27 +44,84 @@
   "responseTemplate": "【艺术流派】{artMovements}\n【代表艺术家】{artists}\n【色彩调性】{colorTonality}\n【视觉关键词】{visualKeywords}\n【角色设计要点】{characterDesignNotes}\n【IP 识别元素】{ipElements}\n【推荐风格组合】{recommendedStyle}",
   "characterStyleDatabase": {
     "anime": {
-      "movements": ["Anime Art Style", "Cel Shading", "Moe Style", "Seinen", "Shoujo"],
-      "artists": ["Makoto Shinkai", "Hiroyuki Imaishi", "Yoshiyuki Sadamoto", "Akira Toriyama"],
-      "colors": ["Vibrant Pastels", "High Saturation", "Gradient Hair Colors", "Expressive Eye Colors"],
+      "movements": [
+        "Anime Art Style",
+        "Cel Shading",
+        "Moe Style",
+        "Seinen",
+        "Shoujo"
+      ],
+      "artists": [
+        "Makoto Shinkai",
+        "Hiroyuki Imaishi",
+        "Yoshiyuki Sadamoto",
+        "Akira Toriyama"
+      ],
+      "colors": [
+        "Vibrant Pastels",
+        "High Saturation",
+        "Gradient Hair Colors",
+        "Expressive Eye Colors"
+      ],
       "characterNotes": "强调大眼睛、丰富表情、动态发型、标志性配饰"
     },
     "realistic": {
-      "movements": ["Photorealism", "Digital Realism", "Portrait Photography", "Cinematic Style"],
-      "artists": ["Greg Rutkowski", "Artgerm", "WLOP", "Guweiz"],
-      "colors": ["Natural Skin Tones", "Subtle Color Grading", "Cinematic Color Palette"],
+      "movements": [
+        "Photorealism",
+        "Digital Realism",
+        "Portrait Photography",
+        "Cinematic Style"
+      ],
+      "artists": [
+        "Greg Rutkowski",
+        "Artgerm",
+        "WLOP",
+        "Guweiz"
+      ],
+      "colors": [
+        "Natural Skin Tones",
+        "Subtle Color Grading",
+        "Cinematic Color Palette"
+      ],
       "characterNotes": "注重真实比例、细腻皮肤质感、自然光影、微表情"
     },
     "cartoon": {
-      "movements": ["Cartoon Network Style", "Disney Style", "Pixar 3D", "Vector Art"],
-      "artists": ["Craig McCracken", "Pendleton Ward", "Disney Animators"],
-      "colors": ["Bold Primary Colors", "Simple Color Blocks", "High Contrast"],
+      "movements": [
+        "Cartoon Network Style",
+        "Disney Style",
+        "Pixar 3D",
+        "Vector Art"
+      ],
+      "artists": [
+        "Craig McCracken",
+        "Pendleton Ward",
+        "Disney Animators"
+      ],
+      "colors": [
+        "Bold Primary Colors",
+        "Simple Color Blocks",
+        "High Contrast"
+      ],
       "characterNotes": "简化造型、夸张特征、强识别度、适合周边开发"
     },
     "fantasy": {
-      "movements": ["Fantasy Art", "Concept Art", "Epic Fantasy", "Mythological Art"],
-      "artists": ["Frank Frazetta", "Boris Vallejo", "Alan Lee", "John Howe"],
-      "colors": ["Rich Jewel Tones", "Magical Glow Effects", "Atmospheric Colors"],
+      "movements": [
+        "Fantasy Art",
+        "Concept Art",
+        "Epic Fantasy",
+        "Mythological Art"
+      ],
+      "artists": [
+        "Frank Frazetta",
+        "Boris Vallejo",
+        "Alan Lee",
+        "John Howe"
+      ],
+      "colors": [
+        "Rich Jewel Tones",
+        "Magical Glow Effects",
+        "Atmospheric Colors"
+      ],
       "characterNotes": "奇幻服饰、魔法元素、种族特征、武器道具设计"
     }
   },
@@ -82,6 +145,11 @@
     "createdAt": "2026-03-13",
     "updatedAt": "2026-03-13",
     "skillLevel": "professional",
-    "targetUsers": ["character-designers", "ip-creators", "brand-designers", "mascot-designers"]
+    "targetUsers": [
+      "character-designers",
+      "ip-creators",
+      "brand-designers",
+      "mascot-designers"
+    ]
   }
 }

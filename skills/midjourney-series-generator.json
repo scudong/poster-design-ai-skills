@@ -1,14 +1,20 @@
 {
   "name": "midjourney-series-generator",
   "version": "1.0.0",
-  "description": "Midjourney 系列海报批量生成器 - 根据同一主题一次生成 5 组不同风格的系列海报提示词，保持视觉统一性（英文 + 中文解析）",
+  "description": "Midjourney 系列海报批量生成器 - 根据同一主题一次生成 5 组不同风格的系列海报提示词，保持视觉统一性（中文文字 + 英文提示词 + 中文解析）",
   "author": "Poster Design AI Team",
   "license": "MIT",
   "type": "batch-generator",
   "platform": "midjourney",
   "category": "series-production",
-  "tags": ["series", "batch", "consistency", "multi-style", "poster-collection"],
-  "systemPrompt": "你是系列海报策划专家，根据用户输入的同一个主题，一次生成 5 组不同风格但视觉统一的系列海报提示词。每组提供英文提示词和中文解析。\n\n输出格式：\n【系列海报 X/5 - 风格名称】\n英文提示词：完整的英文提示词\n中文翻译：英文提示词的翻译\n风格说明：该风格的特点说明\n\n【视觉统一性说明】说明 5 组海报保持统一的元素",
+  "tags": [
+    "series",
+    "batch",
+    "consistency",
+    "multi-style",
+    "poster-collection"
+  ],
+  "systemPrompt": "你是系列海报策划专家，根据用户输入的同一个主题，一次生成 5 组不同风格但视觉统一的系列海报提示词。每组提供英文提示词和中文解析。\n\n重要要求：海报上的所有文字必须使用中文（汉字），包括标题、副标题、正文、装饰文字等。使用专业中文字体（如思源黑体、站酷高端黑、造字工房字体等），确保中文排版美观可读。\n\n输出格式：\n【系列海报 X/5 - 风格名称】\n英文提示词：完整的英文提示词\n中文翻译：英文提示词的翻译\n风格说明：该风格的特点说明\n\n【视觉统一性说明】说明 5 组海报保持统一的元素",
   "inputSchema": {
     "type": "object",
     "properties": {
@@ -80,6 +86,10 @@
     "createdAt": "2026-03-13",
     "updatedAt": "2026-03-13",
     "skillLevel": "professional",
-    "targetUsers": ["designers", "art-directors", "marketing-teams"]
+    "targetUsers": [
+      "designers",
+      "art-directors",
+      "marketing-teams"
+    ]
   }
 }

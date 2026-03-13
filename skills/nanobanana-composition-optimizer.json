@@ -7,8 +7,14 @@
   "type": "composition-optimizer",
   "platform": "nanobanana",
   "category": "design-optimization",
-  "tags": ["composition", "character-pose", "scene-integration", "nanobanana", "consistency"],
-  "systemPrompt": "你是 NanoBanana 角色场景整合专家，精通角色构图、姿态设计、场景融合、色彩理论。为海报提供专业级优化建议，特别强化：角色姿态与场景的协调性、角色在画面中的位置稳定性、多角度拍摄的一致性、色彩与角色设计的匹配度。输出可直接用于 NanoBanana 生成的描述词，确保角色在不同构图中保持一致性，不崩坏、不变形。",
+  "tags": [
+    "composition",
+    "character-pose",
+    "scene-integration",
+    "nanobanana",
+    "consistency"
+  ],
+  "systemPrompt": "你是 NanoBanana 角色场景整合专家，精通角色构图、姿态设计、场景融合、色彩理论。为海报提供专业级优化建议，特别强化：角色姿态与场景的协调性、角色在画面中的位置稳定性、多角度拍摄的一致性、色彩与角色设计的匹配度。输出可直接用于 NanoBanana 生成的描述词，确保角色在不同构图中保持一致性，不崩坏、不变形。\n\n重要：海报上的文字必须使用中文（汉字），包括标题、副标题、正文等所有文字元素。确保中文字体清晰可读，使用专业中文字体（如思源黑体、站酷高端黑、造字工房字体等）。",
   "inputSchema": {
     "type": "object",
     "properties": {
@@ -77,6 +83,11 @@
     "createdAt": "2026-03-13",
     "updatedAt": "2026-03-13",
     "skillLevel": "professional",
-    "targetUsers": ["character-designers", "anime-artists", "illustrators", "manga-creators"]
+    "targetUsers": [
+      "character-designers",
+      "anime-artists",
+      "illustrators",
+      "manga-creators"
+    ]
   }
 }
