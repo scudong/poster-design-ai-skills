@@ -63,7 +63,7 @@ cd ~/poster-skills
 bash install-macos.sh
 ```
 
-详细安装步骤请查看 [安装教程](INSTALL.md)
+详细安装和卸载步骤请查看 [安装教程](INSTALL.md)
 
 ---
 
@@ -130,10 +130,58 @@ bash install-macos.sh
 | 文档 | 内容 |
 |------|------|
 | [README.md](README.md) | 项目总览（当前文档） |
-| [INSTALL.md](INSTALL.md) | 详细安装教程 |
+| [INSTALL.md](INSTALL.md) | 安装和卸载教程 |
 | [USAGE.md](USAGE.md) | 使用指南 + 20 个提示词案例 |
-| [docs/github-publish.md](docs/github-publish.md) | GitHub 发布流程 |
-| [docs/troubleshooting.md](docs/troubleshooting.md) | 429/1113 报错解决方案 |
+| [TROUBLESHOOTING_MCP.md](TROUBLESHOOTING_MCP.md) | MCP 连接问题排查 |
+
+---
+
+## 📋 项目结构
+
+```
+poster-design-ai-skills/
+├── mcp.json                          # MCP 配置文件
+├── package.json                      # 项目配置
+├── README.md                         # 项目说明
+├── INSTALL.md                        # 安装和卸载教程
+├── USAGE.md                          # 使用文档
+├── TROUBLESHOOTING_MCP.md            # 故障排查指南
+├── skills/                           # 技能文件目录
+│   ├── midjourney-*.json            # 4 个 Midjourney 技能
+│   └── nanobanana-*.json            # 4 个 NanoBanana 技能
+├── scripts/                          # 工具脚本
+│   └── *.js                          # 辅助脚本
+└── install-macos.sh                  # macOS 一键安装脚本
+```
+
+---
+
+## 🎯 核心特性
+
+### 1. 专业级提示词工程
+
+所有技能内置的提示词都经过专业策展人、AI 绘画提示词工程师、版式设计师三方打磨，确保：
+
+- ✅ 包含完整艺术策展要素（主题、风格、构图、光影、色彩、材质、排版）
+- ✅ 符合 Midjourney/NanoBanana 最优参数结构
+- ✅ 输出纯提示词，不解释、不换行、可直接粘贴使用
+
+### 2. 角色一致性技术（NanoBanana 专属）
+
+针对 IP 设计、虚拟主播、品牌角色等场景，提供完整的角色一致性锁定方案：
+
+- ✅ 角色特征详细定义（发型、瞳色、服装、配饰、姿态）
+- ✅ 跨场景一致性控制
+- ✅ 多角度多表情统一
+- ✅ 避免角色崩坏
+
+### 3. MCP 标准兼容
+
+完全符合 Model Context Protocol 标准，支持：
+
+- ✅ 一键安装/卸载
+- ✅ 技能热插拔
+- ✅ 跨平台兼容（macOS、Windows、Linux）
 
 ---
 
@@ -151,151 +199,26 @@ npm run test
 
 # 构建发布
 npm run build
-
-# 发布到 GitHub
-npm run publish:github
 ```
 
 ---
 
-## 📋 项目结构
+## 📄 开源协议
 
-```
-poster-design-ai-skills/
-├── mcp.json                          # MCP 配置文件
-├── package.json                      # 项目配置
-├── README.md                         # 项目说明
-├── INSTALL.md                        # 安装教程
-├── USAGE.md                          # 使用文档
-├── skills/                           # 技能文件目录
-│   ├── midjourney-poster-generator.json
-│   ├── midjourney-style-matcher.json
-│   ├── midjourney-composition-optimizer.json
-│   ├── midjourney-series-generator.json
-│   ├── nanobanana-poster-generator.json
-│   ├── nanobanana-style-matcher.json
-│   ├── nanobanana-composition-optimizer.json
-│   └── nanobanana-series-generator.json
-├── scripts/                          # 工具脚本
-│   ├── install-skills.js
-│   ├── validate-skills.js
-│   ├── test-skills.js
-│   └── publish-to-github.sh
-└── docs/                             # 补充文档
-    ├── github-publish.md
-    └── troubleshooting.md
-```
+MIT License - 详见 [LICENSE](LICENSE)
 
 ---
 
-## 🎯 核心特性
+## 🔗 相关链接
 
-### 1. 专业级提示词工程
-
-所有技能内置的提示词都经过专业策展人、AI 绘画提示词工程师、版式设计师三方打磨，确保：
-
-- ✅ 包含完整艺术策展要素（主题、风格、构图、光影、色彩、材质、排版）
-- ✅ 符合 Midjourney/NanoBanana 最优参数结构
-- ✅ 输出纯提示词，不解释、不换行、可直接粘贴使用
-- ✅ 支持中文输入，自动转换为最优英文提示词
-
-### 2. 角色一致性技术（NanoBanana 专属）
-
-针对 AI 绘画角色崩坏问题，开发了完整的角色锁定方案：
-
-- ✅ 强制角色定义关键词块（发型、发色、眼睛、服装、配饰、体型）
-- ✅ 内置一致性检查清单（7 大维度）
-- ✅ 系列生成时自动重复角色锁定关键词
-- ✅ IP 识别元素跨图统一
-
-### 3. 标准 MCP 封装
-
-严格遵循 Claude MCP 标准：
-
-- ✅ 标准 `mcp.json` 配置
-- ✅ 每个技能独立 `.json` 文件
-- ✅ 完整 `inputSchema` 定义
-- ✅ 清晰的 `outputFormat` 规范
-- ✅ 可直接通过 `claude mcp install` 安装
-
-### 4. 可商用级别
-
-- ✅ MIT 许可证，可自由商用
-- ✅ 提示词无版权风险
-- ✅ 输出内容可直接用于商业项目
-- ✅ 支持企业定制和私有化部署
-
----
-
-## 🔧 故障排查
-
-### 常见问题
-
-#### 1. 安装失败
-
-```bash
-# 检查 Node.js 版本
-node -v  # 必须 >= 18.0.0
-
-# 清除缓存重试
-npm cache clean --force
-npm install
-```
-
-#### 2. 技能不生效
-
-- 确认 MCP 配置已正确加载
-- 重启 Claude Desktop
-- 检查技能文件路径是否正确
-
-#### 3. 429/1113 错误
-
-请查看 [故障排查文档](docs/troubleshooting.md)
-
----
-
-## 📄 许可证
-
-MIT License - 可自由使用、修改、分发，包括商业用途
-
-详见 [LICENSE](LICENSE) 文件
-
----
-
-## 👥 贡献
-
-欢迎提交 Issue 和 Pull Request！
-
-1. Fork 本仓库
-2. 创建特性分支 (`git checkout -b feature/AmazingFeature`)
-3. 提交更改 (`git commit -m 'Add some AmazingFeature'`)
-4. 推送到分支 (`git push origin feature/AmazingFeature`)
-5. 开启 Pull Request
-
----
-
-## 📬 联系方式
-
-- 项目主页：[GitHub Repository](https://github.com/scudong/poster-design-ai-skills)
-- 问题反馈：[Issues](https://github.com/scudong/poster-design-ai-skills/issues)
-
----
-
-## 🙏 致谢
-
-感谢以下开源项目和社区：
-
-- Claude MCP 项目
-- Midjourney 官方社区
-- NanoBanana 开发者社区
-- 所有贡献者
+- [GitHub 仓库](https://github.com/scudong/poster-design-ai-skills)
+- [MCP 官网](https://modelcontextprotocol.io/)
+- [Claude Desktop](https://claude.ai/download)
 
 ---
 
 <div align="center">
 
-**Made with ❤️ by Poster Design AI Team**
-
-[⭐ Star this repo](https://github.com/scudong/poster-design-ai-skills) if you find it useful!
+**🎨 让 AI 成为你的专业策展人！**
 
 </div>
