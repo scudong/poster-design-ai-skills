@@ -163,8 +163,8 @@ git init
 git add .
 git commit -m "Initial commit: 海报设计 AI 技能工具包 v1.0.0"
 
-# 添加远程仓库（替换为您的 GitHub 用户名）
-git remote add origin https://github.com/your-username/poster-design-ai-skills.git
+# 添加远程仓库
+git remote add origin https://github.com/scudong/poster-design-ai-skills.git
 
 # 推送
 git push -u origin main
@@ -249,7 +249,7 @@ npm run publish:github
 
 ## 📞 联系支持
 
-- GitHub Issues: https://github.com/your-username/poster-design-ai-skills/issues
+- GitHub Issues: https://github.com/scudong/poster-design-ai-skills/issues
 - 邮箱：support@poster-skills.ai（示例）
 - 文档：https://poster-skills.ai/docs（示例）
 

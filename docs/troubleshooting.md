@@ -536,7 +536,7 @@ async function testWithMock(useMock = true) {
 
 ### 社区支持
 
-- GitHub Issues: https://github.com/your-username/poster-design-ai-skills/issues
+- GitHub Issues: https://github.com/scudong/poster-design-ai-skills/issues
 - 微信群：扫码加入用户交流群
 - QQ 群：xxxxxxx
 

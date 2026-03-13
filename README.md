@@ -44,11 +44,19 @@
 - npm >= 9.0.0
 - Claude Desktop 或支持 MCP 的客户端
 
-### 一键安装
+### 方式一：通过 GitHub URL 安装（最简单）✨
+
+```bash
+claude mcp install https://github.com/scudong/poster-design-ai-skills
+```
+
+**完成！** 这是最简单的方式，无需手动配置。
+
+### 方式二：克隆项目安装
 
 ```bash
 # 克隆项目
-git clone https://github.com/your-username/poster-design-ai-skills.git
+git clone https://github.com/scudong/poster-design-ai-skills.git
 cd poster-design-ai-skills
 
 # 安装技能
@@ -271,8 +279,8 @@ MIT License - 可自由使用、修改、分发，包括商业用途
 
 ## 📬 联系方式
 
-- 项目主页：[GitHub Repository](https://github.com/your-username/poster-design-ai-skills)
-- 问题反馈：[Issues](https://github.com/your-username/poster-design-ai-skills/issues)
+- 项目主页：[GitHub Repository](https://github.com/scudong/poster-design-ai-skills)
+- 问题反馈：[Issues](https://github.com/scudong/poster-design-ai-skills/issues)
 
 ---
 
@@ -291,6 +299,6 @@ MIT License - 可自由使用、修改、分发，包括商业用途
 
 **Made with ❤️ by Poster Design AI Team**
 
-[⭐ Star this repo](https://github.com/your-username/poster-design-ai-skills) if you find it useful!
+[⭐ Star this repo](https://github.com/scudong/poster-design-ai-skills) if you find it useful!
 
 </div>

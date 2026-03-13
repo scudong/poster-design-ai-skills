@@ -353,7 +353,7 @@ del "%APPDATA%\Claude\skills\nanobanana-*.json"
 
 1. 查看 [常见问题](README.md#故障排查)
 2. 查阅 [故障排查文档](docs/troubleshooting.md)
-3. 提交 [GitHub Issue](https://github.com/your-username/poster-design-ai-skills/issues)
+3. 提交 [GitHub Issue](https://github.com/scudong/poster-design-ai-skills/issues)
 
 ---
 

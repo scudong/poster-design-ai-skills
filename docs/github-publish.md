@@ -102,7 +102,7 @@ git commit -m "Initial commit: 海报设计 AI 技能工具包 v1.0.0"
 ```bash
 # 在 GitHub 上创建新仓库（不要初始化 README）
 # 然后添加远程仓库
-git remote add origin https://github.com/your-username/poster-design-ai-skills.git
+git remote add origin https://github.com/scudong/poster-design-ai-skills.git
 ```
 
 #### 步骤 3：推送代码
@@ -118,7 +118,7 @@ git push origin v1.0.0
 
 #### 步骤 4：创建 GitHub Release
 
-1. 访问：https://github.com/your-username/poster-design-ai-skills/releases/new
+1. 访问：https://github.com/scudong/poster-design-ai-skills/releases/new
 2. 选择标签：v1.0.0
 3. 填写 Release 标题和说明
 4. 点击 "Publish release"
@@ -156,7 +156,7 @@ v1.0.0 - 海报设计 AI 技能工具包初始发布
 
 ```bash
 # 克隆项目
-git clone https://github.com/your-username/poster-design-ai-skills.git
+git clone https://github.com/scudong/poster-design-ai-skills.git
 cd poster-design-ai-skills
 
 # 一键安装

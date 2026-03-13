@@ -114,7 +114,7 @@ REMOTE=$(git remote get-url origin 2>/dev/null || echo "")
 if [ -z "$REMOTE" ]; then
   error "未配置远程仓库"
   log "请使用以下命令添加远程仓库:"
-  log "  git remote add origin https://github.com/your-username/poster-design-ai-skills.git"
+  log "  git remote add origin https://github.com/scudong/poster-design-ai-skills.git"
   exit 1
 fi
 
